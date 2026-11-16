@@ -35,5 +35,6 @@ La storia del **turismo italiano dal Boom economico a oggi** raccontata dalla fa
 - [x] **EPUB Vol. 2 completo** (12 immagini, 3,8 MB) → `volume-2-tutto-compreso/output/La_valigia_d_Italia_Vol2_Tutto_compreso.epub`
 - [x] **Illustrazioni Vol. 3 — 11/11 scene + copertina generate** (cap. 12 coperto dalla scena-chiave valigia/cartoline)
 - [x] **EPUB Vol. 3 completo** (12 immagini, 3,9 MB) → `volume-3-agriturismo-giubileo/output/La_valigia_d_Italia_Vol3_Agriturismo_e_Giubileo.epub`
-- [ ] Illustrazioni Vol. 4 — in corso: 8/11 scene + copertina generate, EPUB intermedio generato (restano illus. 10–12)
+- [x] **Illustrazioni Vol. 4 — 11/11 scene + copertina generate**
+- [x] **EPUB Vol. 4 completo** (12 immagini, 4,1 MB) → `volume-4-selfie-a-venezia/output/La_valigia_d_Italia_Vol4_Selfie_a_Venezia.epub`
 - [ ] Impaginazione e KDP per Vol. 2–4

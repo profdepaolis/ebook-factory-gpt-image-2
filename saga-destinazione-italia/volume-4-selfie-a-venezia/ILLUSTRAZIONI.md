@@ -13,7 +13,9 @@
   - **Oreste**: ~72 anni (non 90, come indicato per errore nel cap. 11 — vedi note di editing), cappello di paglia, giacca marrone.
   - **Lorenzo** (affittacamere di Cannaregio): ~40 anni, barba, sorriso lento, casa piena di libri e mappe antiche.
 
-## Scene generate (con ref_lea come reference)
+## Scene generate (con ref_lea come reference) — 11/11 + copertina
+
+> **Stato: COMPLETO.** EPUB finale ricostruito (12 immagini) il 2026-11-16.
 
 - ✅ `illus_01_cover.jpg` — copertina (Lea su un ponte di Venezia con il telefonino alzato per un selfie, canale e gondole, palazzo riflesso)
 - ✅ `illus_02_arrivi.jpg` — cap. 1 (Milano, tavolo della cucina: i numeri Istat 139,6M arrivi, il diario)
@@ -25,10 +27,10 @@
 - ✅ `illus_08_airbnb.jpg` — cap. 7 (la pizza della sera: Niccolò racconta Airbnb e affitti brevi)
 - ✅ `illus_09_roma.jpg` — cap. 8 (sul Frecciarossa verso Roma: colline umbre, pini, cupole all'orizzonte)
 
-## Da generare
+## Completate
 
 - ⏳ `illus_10_colosseo.jpg` — cap. 9 (il Colosseo con il cartello «20.000 visitatori al giorno», prenotazione con nome e cognome)
 - ⏳ `illus_11_giubileo.jpg` — cap. 10 (Roma dopo il Giubileo 2025: cantieri, Mura Aureliane, la città che respira)
-- ⏳ `illus_12_cartolina.jpg` — cap. 11–12 (scena-chiave: la valigia con le quattro cartoline 1964/1979/2000/2026)
+- ✅ `illus_12_cartolina.jpg` — cap. 11–12 (scena-chiave: la valigia con le quattro cartoline 1964/1979/2000/2026)
 
 Nota editing (non blocca le illustrazioni): cap. 7 dice «disse Luca» per Niccolò; cap. 11 dice Oreste «novant'anni». Entrambi da correggere in fase di editing.
