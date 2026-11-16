@@ -31,6 +31,7 @@ La storia del **turismo italiano dal Boom economico a oggi** raccontata dalla fa
 - [ ] KDP: upload EPUB + metadata (titolo, prezzo €9,99–12,99, categoria Ragazzi/Storia) e generazione PDF stampa 6×9″ (richiede Calibre/pango o KDP online — non disponibile in sandbox)
 - [x] Editing Vol. 1 (espansione a ~4.700 parole, revisione storica in classe da fare)
 - [x] Manoscritti Vol. 2, 3, 4 (prima stesura completa, ~2.100–2.500 parole ciascuno — da espandere a 4.500–7.000 in editing)
-- [ ] Illustrazioni Vol. 2 — 9/12 scene + copertina generate (restano illus. 10–12; Vol. 2 EPUB intermedio generato)
+- [x] **Illustrazioni Vol. 2 — 11/11 scene + copertina generate** (cap. 12 senza illustrazione dedicata per scelta di layout)
+- [x] **EPUB Vol. 2 completo** (12 immagini, 3,8 MB) → `volume-2-tutto-compreso/output/La_valigia_d_Italia_Vol2_Tutto_compreso.epub`
 - [ ] Illustrazioni Vol. 3–4 (12 per volume, stile coerente con Vol. 1)
 - [ ] Impaginazione e KDP per Vol. 2–4
