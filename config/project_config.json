@@ -197,5 +197,15 @@
       "status": "generated"
     }
   ],
-  "generation_note": "Tutte le 30 pagine sono state generate e normalizzate a 1800x2700 px. Prossimo passo: validazione e assemblaggio EPUB/PDF."
+  "generation_note": "30 pagine generate, normalizzate e brandizzate con il logo Benvenuti in Salento. Copyright inserito nella pagina 30 e nei metadati EPUB. QR social non inseriti su richiesta.",
+  "branding": {
+    "name": "Benvenuti in Salento",
+    "website": "https://benvenutiinsalento.it/",
+    "logo_file": "assets_benvenutiinsalento_logo.png",
+    "logo_on_every_page": true,
+    "copyright_page": 30,
+    "social_qr_codes": false,
+    "source_note": "Branding e logo forniti dal committente; nessun contenuto esterno acquisito automaticamente."
+  },
+  "rights": "© 2026 Benvenuti in Salento · https://benvenutiinsalento.it/ · Opera editoriale esclusiva. Riproduzione vietata senza autorizzazione."
 }

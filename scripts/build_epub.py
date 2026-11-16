@@ -110,6 +110,8 @@ img { display: block; width: 1800px; height: 2700px; object-fit: fill; margin: 0
     title = html.escape(config["title"])
     subtitle = html.escape(config.get("subtitle", ""))
     language = html.escape(config.get("language", "it"))
+    rights = html.escape(config.get("rights", ""))
+    rights_element = f"    <dc:rights>{rights}</dc:rights>\n" if rights else ""
     opf = f'''<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="book-id" prefix="rendition: http://www.idpf.org/vocab/rendition/#">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -117,7 +119,7 @@ img { display: block; width: 1800px; height: 2700px; object-fit: fill; margin: 0
     <dc:title>{title}</dc:title>
     <dc:language>{language}</dc:language>
     <dc:description>{subtitle}</dc:description>
-    <meta property="dcterms:modified">{modified}</meta>
+{rights_element}    <meta property="dcterms:modified">{modified}</meta>
     <meta property="rendition:layout">pre-paginated</meta>
     <meta property="rendition:orientation">portrait</meta>
     <meta property="rendition:spread">none</meta>
