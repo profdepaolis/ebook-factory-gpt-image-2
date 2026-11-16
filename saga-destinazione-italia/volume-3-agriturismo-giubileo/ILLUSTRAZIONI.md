@@ -15,7 +15,9 @@
   - **Signora Pierina**: ~70 anni, grembiule a fiori, capelli grigi raccolti.
   - **Signor Aldo** (barista): capelli bianchi, grembiule bianco.
 
-## Scene generate (con ref_niccolo come reference)
+## Scene generate (con ref_niccolo come reference) — 11/11 + copertina
+
+> **Stato: COMPLETO.** EPUB finale ricostruito (12 immagini) il 2026-11-16.
 
 - ✅ `illus_01_cover.jpg` — copertina (Niccolò nell'aia di La Quercia, la mucca Stella, la Valigia di cuoio sullo sfondo, collina con cipressi)
 - ✅ `illus_02_busta.jpg` — cap. 1 (la busta con la cartolina «AGRITURISMO LA QUERCIA»)
@@ -24,12 +26,12 @@
 - ✅ `illus_05_nonno.jpg` — cap. 4 (nonno Oreste racconta sotto il portico, la valigia)
 - ✅ `illus_06_internet.jpg` — cap. 5 (il computer del bar, il modem che canta, la prima e-mail a nonna Lina)
 
-## Da generare
+## Completate
 
-- ⏳ `illus_07_legge.jpg` — cap. 6 (Legge 730: mungitura, la bruschetta con l'olio nuovo)
+- ✅ `illus_07_legge.jpg` — cap. 6 (Legge 730: mungitura, la bruschetta con l'olio nuovo)
 - ⏳ `illus_08_deviazione.jpg` — cap. 7 (la proposta di andare a Roma: tavolo, mappa/treno, Giubileo)
 - ⏳ `illus_09_roma.jpg` — cap. 8 (Roma piena: San Pietro, pellegrini con gli zaini)
-- ⏳ `illus_10_cartolina.jpg` — cap. 9 (la cartolina «GIUBILEO 2000» con San Pietro e le chiavi)
+- ✅ `illus_10_cartolina.jpg` — cap. 9 (la cartolina «GIUBILEO 2000» con San Pietro e le chiavi)
 - ⏳ `illus_11_scheda.jpg` — cap. 10 (il telefono pubblico, la scheda da mille lire, nonna Lina)
 - ⏳ `illus_12_valigia.jpg` — cap. 11–12 (scena-chiave: la valigia con le tre cartoline 1964/1979/2000; lire→euro)
 
