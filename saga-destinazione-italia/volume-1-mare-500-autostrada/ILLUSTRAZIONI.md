@@ -43,23 +43,18 @@ no text, no logos, no watermark, storybook quality
 
 ## Stato generazione (aggiornato 2026-11-16)
 
-Generati (GPT Image 2, `assets/`):
-
-- ✅ `ref_marco.jpg`, `ref_oreste.jpg`, `ref_lina.jpg`, `ref_valigia.jpg` — character/prop sheet approvati visivamente (coerenti tra loro).
+- ✅ Character/prop sheet: `ref_marco.jpg`, `ref_oreste.jpg`, `ref_lina.jpg`, `ref_valigia.jpg`
 - ✅ `illus_01_cover.jpg` — copertina (Fiat 500 al tramonto)
 - ✅ `illus_02_breda.jpg` — cap. 1 Le città si svuotano
 - ✅ `illus_03_valigia.jpg` — cap. 2 La valigia di cuoio
 - ✅ `illus_04_partenza.jpg` — cap. 3 La partenza
 - ✅ `illus_05_casello.jpg` — cap. 4 Il casello
 - ✅ `illus_06_autogrill.jpg` — cap. 5 L'autogrill
+- ✅ `illus_07_pianura.jpg` — cap. 6 L'Italia si accorcia
+- ✅ `illus_08_rimini.jpg` — cap. 7 Rimini, finalmente!
+- ✅ `illus_09_dieter.jpg` — cap. 8 L'amico tedesco
+- ✅ `illus_10_festa.jpg` — cap. 9 La rotonda sul mare
+- ✅ `illus_11_cartolina.jpg` — cap. 10 La cartolina
+- ✅ `illus_12_radio.jpg` — cap. 11 Ritorno (la radio del 4 ottobre)
 
-⏳ Da generare al prossimo turno (limite turno: 10 immagini):
-
-- `illus_07_pianura.jpg` — cap. 6 L'Italia si accorcia (Po valley dal finestrino)
-- `illus_08_rimini.jpg` — cap. 7 Rimini, finalmente! (costa adriatica)
-- `illus_09_dieter.jpg` — cap. 8 L'amico tedesco (Dieter e la foto Agfa)
-- `illus_10_festa.jpg` — cap. 9 La rotonda sul mare (Ferragosto)
-- `illus_11_cartolina.jpg` — cap. 10 La cartolina
-- `illus_12_radio.jpg` — cap. 11–12 (la radio del 4 ottobre)
-
-Note: le reference sheet (`ref_*.jpg`) non entrano nell'EPUB; servono solo come riferimento visivo per la coerenza delle scene.
+Tutte le illustrazioni del Vol. 1 sono state generate e inserite nell'EPUB (`output/La_valigia_d_Italia_Vol1_Mare_500_e_autostrada.epub`, 12 immagini, 3,8 MB). Le reference sheet (`ref_*.jpg`) non entrano nell'EPUB; servono solo come riferimento visivo per la coerenza delle scene. Il cap. 12 (L'ultima pagina del diario) è volutamente senza illustrazione — chiusura tranquilla prima dell'apparati.

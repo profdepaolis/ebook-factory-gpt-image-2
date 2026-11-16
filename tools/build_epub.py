@@ -38,6 +38,12 @@ ILLUS = {
     3: "illus_04_partenza.jpg",
     4: "illus_05_casello.jpg",
     5: "illus_06_autogrill.jpg",
+    6: "illus_07_pianura.jpg",
+    7: "illus_08_rimini.jpg",
+    8: "illus_09_dieter.jpg",
+    9: "illus_10_festa.jpg",
+    10: "illus_11_cartolina.jpg",
+    11: "illus_12_radio.jpg",
 }
 
 md = markdown.Markdown(extensions=["tables", "smarty"])
