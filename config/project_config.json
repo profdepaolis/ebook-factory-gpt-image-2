@@ -62,7 +62,7 @@
       "page": 8,
       "slug": "ciceri_e_tria",
       "title": "Ciceri e tria",
-      "status": "approved_prototype"
+      "status": "generated"
     },
     {
       "page": 9,
@@ -158,44 +158,44 @@
       "page": 24,
       "slug": "pasticciotti",
       "title": "Pasticciotti leccesi",
-      "status": "pending_generation"
+      "status": "generated"
     },
     {
       "page": 25,
       "slug": "pasta_frolla_crema",
       "title": "Pasta frolla e crema",
-      "status": "pending_generation"
+      "status": "generated"
     },
     {
       "page": 26,
       "slug": "cartellate",
       "title": "Cartellate al miele",
-      "status": "pending_generation"
+      "status": "generated"
     },
     {
       "page": 27,
       "slug": "dolci_delle_feste",
       "title": "Dolci delle feste",
-      "status": "pending_generation"
+      "status": "generated"
     },
     {
       "page": 28,
       "slug": "dispensa_salentina",
       "title": "Dispensa salentina",
-      "status": "pending_generation"
+      "status": "generated"
     },
     {
       "page": 29,
       "slug": "menu_salentino",
       "title": "Menu salentino",
-      "status": "pending_generation"
+      "status": "generated"
     },
     {
       "page": 30,
       "slug": "note_finali",
       "title": "Note finali",
-      "status": "pending_generation"
+      "status": "generated"
     }
   ],
-  "generation_note": "Pagine 1-2 e 8 sono prototipi approvati e integrate; pagine 3-23 generate e normalizzate a 1800x2700 px. Restano da generare le pagine 24-30, poi assemblaggio e validazione finale."
+  "generation_note": "Tutte le 30 pagine sono state generate e normalizzate a 1800x2700 px. Prossimo passo: validazione e assemblaggio EPUB/PDF."
 }

@@ -21,3 +21,8 @@ build/
 
 # Generated EPUB build scratch folders
 **/output/epub_build/
+
+# Generated book deliverables (kept in the workspace for download)
+output/*.epub
+output/*.pdf
+output/*.jpg
