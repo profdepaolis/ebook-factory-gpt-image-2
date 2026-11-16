@@ -22,9 +22,12 @@ La storia del **turismo italiano dal Boom economico a oggi** raccontata dalla fa
 ## Stato
 
 - [x] Piano editoriale saga + outline dei 4 volumi
-- [x] Manoscritto completo Vol. 1 (prima stesura)
+- [x] Manoscritto completo Vol. 1 — **prima stesura espansa ~4.700 parole** (12 capitoli + apparati)
 - [x] Piano illustrazioni Vol. 1
-- [ ] Character sheet (GPT Image 2)
-- [ ] Editing Vol. 1 (espansione 3.5k → 6–7k parole, revisione storica in classe)
-- [ ] Impaginazione Vol. 1 → EPUB + PDF stampa KDP
+- [x] Character sheet (GPT Image 2): Marco, Oreste, Lina, valigia → `assets/ref_*.jpg`
+- [x] Illustrazioni Vol. 1 parte 1 (copertina + illus. 2–6) → `assets/illus_*.jpg`
+- [x] **EPUB reflowable Vol. 1 generato** (15 sezioni, nav TOC, copertina, 6 immagini) → `volume-1-mare-500-autostrada/output/La_valigia_d_Italia_Vol1_Mare_500_e_autostrada.epub`
+- [ ] Illustrazioni 7–12 (limite: 10 immagini per turno)
+- [ ] Editing Vol. 1 (espansione a 6–7k parole, revisione storica in classe, lettura di un adulto)
+- [ ] KDP: upload EPUB + metadata (titolo, prezzo €9,99–12,99, categoria Ragazzi/Storia) e generazione PDF stampa 6×9″ (richiede Calibre/pango o KDP online — non disponibile in sandbox)
 - [ ] Manoscritti Vol. 2–4

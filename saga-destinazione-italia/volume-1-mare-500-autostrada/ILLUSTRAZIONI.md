@@ -38,3 +38,28 @@ no text, no logos, no watermark, storybook quality
 
 **Mappe (2):** disegnare in vettoriale (non generare): (a) Milano→Rimini; (b) mappa saga Milano→Napoli.
 **Spese stimate:** 12 immagini GPT Image 2 + 3 character sheet = 15 generazioni; ~3 prompt-iteration per immagine.
+
+---
+
+## Stato generazione (aggiornato 2026-11-16)
+
+Generati (GPT Image 2, `assets/`):
+
+- ✅ `ref_marco.jpg`, `ref_oreste.jpg`, `ref_lina.jpg`, `ref_valigia.jpg` — character/prop sheet approvati visivamente (coerenti tra loro).
+- ✅ `illus_01_cover.jpg` — copertina (Fiat 500 al tramonto)
+- ✅ `illus_02_breda.jpg` — cap. 1 Le città si svuotano
+- ✅ `illus_03_valigia.jpg` — cap. 2 La valigia di cuoio
+- ✅ `illus_04_partenza.jpg` — cap. 3 La partenza
+- ✅ `illus_05_casello.jpg` — cap. 4 Il casello
+- ✅ `illus_06_autogrill.jpg` — cap. 5 L'autogrill
+
+⏳ Da generare al prossimo turno (limite turno: 10 immagini):
+
+- `illus_07_pianura.jpg` — cap. 6 L'Italia si accorcia (Po valley dal finestrino)
+- `illus_08_rimini.jpg` — cap. 7 Rimini, finalmente! (costa adriatica)
+- `illus_09_dieter.jpg` — cap. 8 L'amico tedesco (Dieter e la foto Agfa)
+- `illus_10_festa.jpg` — cap. 9 La rotonda sul mare (Ferragosto)
+- `illus_11_cartolina.jpg` — cap. 10 La cartolina
+- `illus_12_radio.jpg` — cap. 11–12 (la radio del 4 ottobre)
+
+Note: le reference sheet (`ref_*.jpg`) non entrano nell'EPUB; servono solo come riferimento visivo per la coerenza delle scene.

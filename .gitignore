@@ -21,3 +21,8 @@ build/
 
 # Generated EPUB build scratch folders
 **/output/epub_build/
+
+# Build output della saga (rigenerabile con tools/build_epub.py)
+saga-destinazione-italia/**/output/
+
+.venv/
