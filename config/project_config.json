@@ -16,36 +16,186 @@
   "full_image_pages": true,
   "style_anchor": "Premium Italian cookbook, photorealistic editorial food photography, authentic Salento cuisine, warm natural Mediterranean sunlight, olive green, terracotta and cream palette, rustic Lecce stone and linen details, elegant readable Italian serif typography, consistent professional book-page layout, portrait 6 x 9 inches, exact output 1800 x 2700 pixels. The image is the entire book page; all text is part of the image, in Italian, with no extra words, logos or watermark.",
   "page_plan": [
-    {"page": 1, "slug": "copertina", "title": "Sapori del Salento", "status": "approved_prototype"},
-    {"page": 2, "slug": "sommario", "title": "Sommario", "status": "approved_prototype"},
-    {"page": 3, "slug": "introduzione", "title": "Una tavola tra terra e mare", "status": "generated"},
-    {"page": 4, "slug": "pittule", "title": "Pittule", "status": "generated"},
-    {"page": 5, "slug": "frittelle_fiori_di_zucca", "title": "Frittelle di fiori di zucca", "status": "generated"},
-    {"page": 6, "slug": "friselle", "title": "Friselle al pomodoro", "status": "generated"},
-    {"page": 7, "slug": "melanzane_marinate", "title": "Melanzane marinate", "status": "generated"},
-    {"page": 8, "slug": "ciceri_e_tria", "title": "Ciceri e tria", "status": "approved_prototype"},
-    {"page": 9, "slug": "pasta_fatta_a_mano", "title": "La pasta fatta a mano", "status": "generated"},
-    {"page": 10, "slug": "orecchiette_cime_di_rapa", "title": "Orecchiette con cime di rapa", "status": "generated"},
-    {"page": 11, "slug": "condimenti", "title": "I sapori della dispensa", "status": "generated"},
-    {"page": 12, "slug": "sagne_ncannulate", "title": "Sagne 'ncannulate al sugo", "status": "generated"},
-    {"page": 13, "slug": "grani_legumi", "title": "Grani e legumi", "status": "generated"},
-    {"page": 14, "slug": "cozze_gratinate", "title": "Cozze gratinate", "status": "pending_generation"},
-    {"page": 15, "slug": "dal_mare_alla_tavola", "title": "Dal mare alla tavola", "status": "pending_generation"},
-    {"page": 16, "slug": "polpette_melanzane", "title": "Polpette di melanzane", "status": "pending_generation"},
-    {"page": 17, "slug": "verdure_sott_olio", "title": "Le verdure sott'olio", "status": "pending_generation"},
-    {"page": 18, "slug": "peperoni_ripieni", "title": "Peperoni ripieni", "status": "pending_generation"},
-    {"page": 19, "slug": "olio_extravergine", "title": "L'oro verde del Salento", "status": "pending_generation"},
-    {"page": 20, "slug": "tiella_patate_riso_cozze", "title": "Tiella di patate, riso e cozze", "status": "pending_generation"},
-    {"page": 21, "slug": "cotture_lente", "title": "Cotture lente e teglie", "status": "pending_generation"},
-    {"page": 22, "slug": "pomodori_scattarisciati", "title": "Pomodori scattarisciati", "status": "pending_generation"},
-    {"page": 23, "slug": "erbe_aromatiche", "title": "Erbe aromatiche", "status": "pending_generation"},
-    {"page": 24, "slug": "pasticciotti", "title": "Pasticciotti leccesi", "status": "pending_generation"},
-    {"page": 25, "slug": "pasta_frolla_crema", "title": "Pasta frolla e crema", "status": "pending_generation"},
-    {"page": 26, "slug": "cartellate", "title": "Cartellate al miele", "status": "pending_generation"},
-    {"page": 27, "slug": "dolci_delle_feste", "title": "Dolci delle feste", "status": "pending_generation"},
-    {"page": 28, "slug": "dispensa_salentina", "title": "Dispensa salentina", "status": "pending_generation"},
-    {"page": 29, "slug": "menu_salentino", "title": "Menu salentino", "status": "pending_generation"},
-    {"page": 30, "slug": "note_finali", "title": "Note finali", "status": "pending_generation"}
+    {
+      "page": 1,
+      "slug": "copertina",
+      "title": "Sapori del Salento",
+      "status": "approved_prototype"
+    },
+    {
+      "page": 2,
+      "slug": "sommario",
+      "title": "Sommario",
+      "status": "approved_prototype"
+    },
+    {
+      "page": 3,
+      "slug": "introduzione",
+      "title": "Una tavola tra terra e mare",
+      "status": "generated"
+    },
+    {
+      "page": 4,
+      "slug": "pittule",
+      "title": "Pittule",
+      "status": "generated"
+    },
+    {
+      "page": 5,
+      "slug": "frittelle_fiori_di_zucca",
+      "title": "Frittelle di fiori di zucca",
+      "status": "generated"
+    },
+    {
+      "page": 6,
+      "slug": "friselle",
+      "title": "Friselle al pomodoro",
+      "status": "generated"
+    },
+    {
+      "page": 7,
+      "slug": "melanzane_marinate",
+      "title": "Melanzane marinate",
+      "status": "generated"
+    },
+    {
+      "page": 8,
+      "slug": "ciceri_e_tria",
+      "title": "Ciceri e tria",
+      "status": "approved_prototype"
+    },
+    {
+      "page": 9,
+      "slug": "pasta_fatta_a_mano",
+      "title": "La pasta fatta a mano",
+      "status": "generated"
+    },
+    {
+      "page": 10,
+      "slug": "orecchiette_cime_di_rapa",
+      "title": "Orecchiette con cime di rapa",
+      "status": "generated"
+    },
+    {
+      "page": 11,
+      "slug": "condimenti",
+      "title": "I sapori della dispensa",
+      "status": "generated"
+    },
+    {
+      "page": 12,
+      "slug": "sagne_ncannulate",
+      "title": "Sagne 'ncannulate al sugo",
+      "status": "generated"
+    },
+    {
+      "page": 13,
+      "slug": "grani_legumi",
+      "title": "Grani e legumi",
+      "status": "generated"
+    },
+    {
+      "page": 14,
+      "slug": "cozze_gratinate",
+      "title": "Cozze gratinate",
+      "status": "generated"
+    },
+    {
+      "page": 15,
+      "slug": "dal_mare_alla_tavola",
+      "title": "Dal mare alla tavola",
+      "status": "generated"
+    },
+    {
+      "page": 16,
+      "slug": "polpette_melanzane",
+      "title": "Polpette di melanzane",
+      "status": "generated"
+    },
+    {
+      "page": 17,
+      "slug": "verdure_sott_olio",
+      "title": "Le verdure sott'olio",
+      "status": "generated"
+    },
+    {
+      "page": 18,
+      "slug": "peperoni_ripieni",
+      "title": "Peperoni ripieni",
+      "status": "generated"
+    },
+    {
+      "page": 19,
+      "slug": "olio_extravergine",
+      "title": "L'oro verde del Salento",
+      "status": "generated"
+    },
+    {
+      "page": 20,
+      "slug": "tiella_patate_riso_cozze",
+      "title": "Tiella di patate, riso e cozze",
+      "status": "generated"
+    },
+    {
+      "page": 21,
+      "slug": "cotture_lente",
+      "title": "Cotture lente e teglie",
+      "status": "generated"
+    },
+    {
+      "page": 22,
+      "slug": "pomodori_scattarisciati",
+      "title": "Pomodori scattarisciati",
+      "status": "generated"
+    },
+    {
+      "page": 23,
+      "slug": "erbe_aromatiche",
+      "title": "Erbe aromatiche",
+      "status": "generated"
+    },
+    {
+      "page": 24,
+      "slug": "pasticciotti",
+      "title": "Pasticciotti leccesi",
+      "status": "pending_generation"
+    },
+    {
+      "page": 25,
+      "slug": "pasta_frolla_crema",
+      "title": "Pasta frolla e crema",
+      "status": "pending_generation"
+    },
+    {
+      "page": 26,
+      "slug": "cartellate",
+      "title": "Cartellate al miele",
+      "status": "pending_generation"
+    },
+    {
+      "page": 27,
+      "slug": "dolci_delle_feste",
+      "title": "Dolci delle feste",
+      "status": "pending_generation"
+    },
+    {
+      "page": 28,
+      "slug": "dispensa_salentina",
+      "title": "Dispensa salentina",
+      "status": "pending_generation"
+    },
+    {
+      "page": 29,
+      "slug": "menu_salentino",
+      "title": "Menu salentino",
+      "status": "pending_generation"
+    },
+    {
+      "page": 30,
+      "slug": "note_finali",
+      "title": "Note finali",
+      "status": "pending_generation"
+    }
   ],
-  "generation_note": "Pagine 1, 2 e 8 sono i prototipi approvati; le pagine 3-7 e 9-13 sono state generate e normalizzate. Le pagine 14-30 restano da generare nel prossimo turno per il limite di 10 immagini per turno."
+  "generation_note": "Pagine 1-2 e 8 sono prototipi approvati e integrate; pagine 3-23 generate e normalizzate a 1800x2700 px. Restano da generare le pagine 24-30, poi assemblaggio e validazione finale."
 }
