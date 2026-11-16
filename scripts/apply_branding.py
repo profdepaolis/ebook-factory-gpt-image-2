@@ -27,9 +27,17 @@ def main() -> None:
 
     work = args.pages / ".branding_work"
     work.mkdir(exist_ok=True)
-    logo_small = work / "logo_190.png"
+    logo_circle = work / "logo_circle.png"
+    logo_small = work / "logo_160.png"
     credits = work / "copyright_footer.png"
-    run("convert", str(args.logo), "-resize", "190x190!", "-strip", str(logo_small))
+    # Keep the artwork inside the supplied circular border and make the outside transparent.
+    run(
+        "convert", str(args.logo), "-alpha", "on",
+        "(", "-size", "512x512", "xc:none", "-fill", "white",
+        "-draw", "circle 256,256 256,18", ")",
+        "-compose", "CopyOpacity", "-composite", "-strip", str(logo_circle),
+    )
+    run("convert", str(logo_circle), "-resize", "160x160!", "-strip", str(logo_small))
 
     line_one = f"Opera editoriale esclusiva per {args.brand_name}"
     line_two = f"© 2026 {args.brand_name} · {args.website} · Riproduzione vietata"
@@ -44,19 +52,22 @@ def main() -> None:
         "-strip", str(credits),
     )
 
-    for page in pages:
+    for number, page in enumerate(pages, 1):
         tmp = work / page.name
+        # Pages with recipe/content panels get the logo in the photographic header;
+        # cover and final page keep it in the bottom margin. This avoids text entirely.
+        logo_geometry = "+70+2470" if number in (1, 30) else "+70+70"
         command = [
-            "convert", str(page), str(logo_small), "-geometry", "+70+2470", "-composite",
+            "convert", str(page), str(logo_small), "-geometry", logo_geometry, "-composite",
         ]
-        if page.name.startswith("page_030_"):
+        if number == 30:
             command.extend([str(credits), "-geometry", "+320+2390", "-composite"])
         command.extend(["-strip", "-quality", "88", str(tmp)])
         run(*command)
         tmp.replace(page)
 
     # Keep the source logo and brand metadata in the repository; do not retain scratch files.
-    for scratch in (logo_small, credits):
+    for scratch in (logo_circle, logo_small, credits):
         scratch.unlink(missing_ok=True)
     work.rmdir()
     print(f"Applied {args.brand_name} logo to {len(pages)} pages; copyright footer added to page 30.")
