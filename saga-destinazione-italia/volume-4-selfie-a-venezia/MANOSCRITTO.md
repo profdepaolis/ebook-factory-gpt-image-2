@@ -117,7 +117,7 @@ Alla sera, davanti a una pizza, il papà raccontò che in molte città italiane 
 
 — Cosa sono gli Airbnb? — chiese Lea.
 
-— Sono case private affittate a turisti, — disse Luca. — Nate nel 2008, sono diventate un modo per guadagnare in più. Ma hanno anche un problema: molte famiglie non trovano casa, perché gli appartamenti migliori sono affittati ai turisti invece che ai residenti.
+— Sono case private affittate a turisti, — disse Niccolò. — Nate nel 2008, sono diventate un modo per guadagnare in più. Ma hanno anche un problema: molte famiglie non trovano casa, perché gli appartamenti migliori sono affittati ai turisti invece che ai residenti.
 
 — Allora è giusto vietarli? — chiese Lea.
 

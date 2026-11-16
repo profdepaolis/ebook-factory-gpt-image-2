@@ -71,7 +71,7 @@ Il nonno Oreste annuì.
 
 La sera, dopo cena, sotto il portico, il nonno raccontò come aveva cominciato a viaggiare lui.
 
-— Io avevo dieci anni, come te. Era l'estate del **1964**, e noi andammo a Rimini in Fiat 500, con tuo padre Marco che aveva la tua età. Partimmo da Milano presto presto. L'autostrada del Sole c'era fino a Bologna e poi si fermava, perché la stava finendo. Ci mettemmo sei ore, non ricordo precisamente. Ricordo però una cosa: c'era la valigia di cuoio.
+— Io avevo dieci anni, come te. Era l'estate del **1964**, e noi andammo a Rimini in Fiat 500, con tuo nonno Marco che aveva la tua età. Partimmo da Milano presto presto. L'autostrada del Sole c'era fino a Bologna e poi si fermava, perché la stava finendo. Ci mettemmo sei ore, non ricordo precisamente. Ricordo però una cosa: c'era la valigia di cuoio.
 
 Niccolò conosceva la valigia: stava in salotto, sotto la finestra, con dentro foto e cartoline. Aveva l'etichetta **MORELLI — MILANO** e un odore di cuoio e tempo.
 
