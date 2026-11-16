@@ -29,4 +29,7 @@ La storia del **turismo italiano dal Boom economico a oggi** raccontata dalla fa
 - [x] **EPUB Vol. 1 completo** (12 immagini, 3,8 MB, copertina + 12 capitoli + apparati) → `volume-1-mare-500-autostrada/output/La_valigia_d_Italia_Vol1_Mare_500_e_autostrada.epub`
 - [ ] Editing Vol. 1 (espansione a 6–7k parole, revisione storica in classe, lettura di un adulto)
 - [ ] KDP: upload EPUB + metadata (titolo, prezzo €9,99–12,99, categoria Ragazzi/Storia) e generazione PDF stampa 6×9″ (richiede Calibre/pango o KDP online — non disponibile in sandbox)
-- [ ] Manoscritti Vol. 2–4
+- [x] Editing Vol. 1 (espansione a ~4.700 parole, revisione storica in classe da fare)
+- [x] Manoscritti Vol. 2, 3, 4 (prima stesura completa, ~2.100–2.500 parole ciascuno — da espandere a 4.500–7.000 in editing)
+- [ ] Illustrazioni Vol. 2–4 (12 per volume, stile coerente con Vol. 1)
+- [ ] Impaginazione e KDP per Vol. 2–4

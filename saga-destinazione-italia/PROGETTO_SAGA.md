@@ -252,10 +252,13 @@ Una sola famiglia, i **Morelli**, quattro generazioni, quattro estati in quattro
 
 1. ✅ **Scelta della saga e piano editoriale** — questo documento.
 2. ✅ **Outline dei 4 volumi** — §6.
-3. ✅ **Manoscritto completo Vol. 1** — `volume-1-mare-500-autostrada/MANOSCRITTO.md` (12 capitoli + apparati).
-4. ⏳ **Character sheet** (GPT Image 2): Marco, Oreste, Lina, valigia → `references/`.
-5. ⏳ **Impaginazione Vol. 1**: testo + illustrazioni → EPUB reflowable + PDF stampa 6×9".
-6. ⏳ **Schede didattiche Vol. 1** (20 schede) + dossier fonti PDF.
-7. ⏳ **Vol. 2, 3, 4**: manoscritto → illustrazioni → KDP.
+3. ✅ **Manoscritto completo Vol. 1** — `volume-1-mare-500-autostrada/MANOSCRITTO.md` (~4.700 parole + apparati; illustrazioni 12/12; EPUB reflowable generato).
+4. ✅ **Manoscritto Vol. 2** — `volume-2-tutto-compreso/MANOSCRITTO.md` (~2.500 parole, prima stesura completa).
+5. ✅ **Manoscritto Vol. 3** — `volume-3-agriturismo-giubileo/MANOSCRITTO.md` (~2.500 parole, prima stesura completa).
+6. ✅ **Manoscritto Vol. 4** — `volume-4-selfie-a-venezia/MANOSCRITTO.md` (~2.100 parole, prima stesura completa).
+7. ⏳ **Illustrazioni Vol. 2–4** (12 per volume) — al prossimo turno (limite 10 immagini/turno).
+8. ⏳ **Editing finale tutti i volumi** (espansione a 4.500–7.000 parole, lettura di un adulto/esperto storico, normalizzazione grafica).
+9. ⏳ **EPUB + PDF KDP dei Vol. 2–4** — una volta generate le illustrazioni.
+10. ⏳ **Schede didattiche** (4 set × 20 schede) + dossier fonti PDF.
 
 **Costo/tempo indicativo totale:** ~4 settimane per i 4 volumi (manoscritto + illustrazioni + KDP), con 1 voce umana di editing finale prima della pubblicazione (contenuti storici vanno rivisti da un medialab/insegnante).
