@@ -25,10 +25,10 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def page_files(pages_dir: Path) -> list[Path]:
+def page_files(pages_dir: Path, expected_count: int | None = None) -> list[Path]:
     files = sorted(pages_dir.glob("page_*.jpg"))
-    if len(files) != 30:
-        raise SystemExit(f"Expected 30 page JPEGs in {pages_dir}, found {len(files)}")
+    if expected_count is not None and len(files) != expected_count:
+        raise SystemExit(f"Expected {expected_count} page JPEGs in {pages_dir}, found {len(files)}")
     for number, path in enumerate(files, 1):
         expected = f"page_{number:03d}_"
         if not path.name.startswith(expected):
@@ -53,7 +53,8 @@ def xhtml_page(number: int, image_name: str, title: str) -> str:
 
 def build(args: argparse.Namespace) -> Path:
     config = json.loads(args.config.read_text(encoding="utf-8"))
-    pages = page_files(args.pages)
+    expected_count = config.get("total_pages")
+    pages = page_files(args.pages, int(expected_count) if expected_count else None)
     output = args.output
     work = output.parent / "epub_build"
     if work.exists():

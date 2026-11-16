@@ -26,3 +26,9 @@ build/
 output/*.epub
 output/*.pdf
 output/*.jpg
+
+# Generated family mini-guide exports (kept in the workspace for download)
+salento-per-famiglie/output/*.epub
+salento-per-famiglie/output/*.pdf
+salento-per-famiglie/output/*.jpg
+salento-per-famiglie/output/epub_build/

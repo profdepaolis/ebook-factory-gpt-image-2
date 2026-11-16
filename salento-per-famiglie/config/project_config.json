@@ -102,68 +102,77 @@
       "page": 14,
       "slug": "sapori_bambini",
       "title": "Sapori da provare",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 15,
       "slug": "merenda_salentina",
       "title": "La merenda salentina",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 16,
       "slug": "famiglia_mare",
       "title": "Il mare in sicurezza",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 17,
       "slug": "ritmi_famiglia",
       "title": "Rallentare insieme",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 18,
       "slug": "foto_ricordi",
       "title": "Diario dei ricordi",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 19,
       "slug": "giorno_zero_auto",
       "title": "Itinerario: un giorno senza fretta",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 20,
       "slug": "weekend",
       "title": "Itinerario: weekend in famiglia",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 21,
       "slug": "tre_giorni",
       "title": "Itinerario: tre giorni",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 22,
       "slug": "checklist",
       "title": "Checklist del viaggio",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 23,
       "slug": "contatti",
       "title": "Contatti e informazioni utili",
-      "status": "planned"
+      "status": "generated"
     },
     {
       "page": 24,
       "slug": "saluti",
       "title": "A presto, Salento",
-      "status": "planned"
+      "status": "generated"
     }
   ],
-  "generation_note": "Prototipi approvati per cover, sommario e pagina esempio; pagine 3-4 e 6-13 generate e normalizzate. Restano da generare pagine 14-24."
+  "generation_note": "Tutte le 24 pagine sono generate e normalizzate. Prossimo passo: applicazione del logo trasparente, copyright ed export EPUB/PDF.",
+  "branding": {
+    "name": "Benvenuti in Salento",
+    "website": "https://benvenutiinsalento.it/",
+    "logo_file": "../../assets_benvenutiinsalento_logo.png",
+    "logo_on_every_page": true,
+    "social_qr_codes": false,
+    "copyright_page": 24
+  },
+  "rights": "© 2026 Benvenuti in Salento · https://benvenutiinsalento.it/ · Guida editoriale esclusiva. Riproduzione vietata senza autorizzazione."
 }

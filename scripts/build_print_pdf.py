@@ -19,10 +19,10 @@ def stream_object(dictionary: str, data: bytes) -> bytes:
     return dictionary.encode() + f"\nstream\n".encode() + data + b"\nendstream"
 
 
-def build(pages_dir: Path, output: Path) -> Path:
+def build(pages_dir: Path, output: Path, expected_count: int | None = None) -> Path:
     pages = sorted(pages_dir.glob("page_*.jpg"))
-    if len(pages) != 30:
-        raise SystemExit(f"Expected 30 JPEG pages, found {len(pages)}")
+    if expected_count is not None and len(pages) != expected_count:
+        raise SystemExit(f"Expected {expected_count} JPEG pages, found {len(pages)}")
 
     objects: dict[int, bytes] = {}
     # Object 1: catalog; object 2: pages tree.
@@ -78,8 +78,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pages", type=Path, default=Path("pages"))
     parser.add_argument("--output", type=Path, default=Path("output/sapori_del_salento_print.pdf"))
+    parser.add_argument("--expected-pages", type=int, default=None)
     args = parser.parse_args()
-    print(build(args.pages, args.output))
+    print(build(args.pages, args.output, args.expected_pages))
 
 
 if __name__ == "__main__":
