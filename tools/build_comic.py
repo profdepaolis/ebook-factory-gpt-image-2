@@ -70,8 +70,11 @@ def panel_rects(template: str) -> dict[str, tuple[float, float, float, float]]:
     raise ValueError(f"unknown template {template}")
 
 
+# per-panel vertical crop anchor (0 = top-anchored, 0.5 = centred, 1 = bottom)
+ANCHOR_Y = {"p25_conto": 0.15, "p28_casa": 0.0}
+
 def cropped(path: Path, w_mm: float, h_mm: float, key: str) -> Path:
-    """Centre-crop the panel to the target aspect ratio; cache on disk."""
+    """Crop the panel to the target aspect ratio; cache on disk."""
     TMP.mkdir(parents=True, exist_ok=True)
     out = TMP / f"{key}.jpg"
     target_ar = w_mm / h_mm
@@ -85,7 +88,7 @@ def cropped(path: Path, w_mm: float, h_mm: float, key: str) -> Path:
             im = im.crop((x0, 0, x0 + nw, h))
         elif ar < target_ar:    # too tall → crop top/bottom
             nh = int(w / target_ar)
-            y0 = (h - nh) // 2
+            y0 = int((h - nh) * ANCHOR_Y.get(key, 0.5))
             im = im.crop((0, y0, w, y0 + nh))
         im.save(out, quality=92)
     return out
@@ -355,7 +358,7 @@ PAGES = [
     }, captions=[], balloons=[
         dict(panel="A", cx=40, cy=14, w=40, tail=(35, 48), size=13, style="shout", min_h=15,
              text="CE L'HO FATTA!"),
-        dict(panel="A", cx=103, cy=40, w=45, tail=(45, 62), size=9.5,
+        dict(panel="A", cx=103, cy=40, w=45, tail=(70, 58), size=9.5,
              text="…Non sei l'Oceanico!"),
         dict(panel="B", cx=31.5, cy=17, w=52, tail=(30, 54), size=8,
              text="Ciao! Vengo da Monaco. Mio nonno dice che qui tutto è «un po' in ritardo e un po' più buono»!"),
@@ -411,9 +414,9 @@ PAGES = [
         dict(panel="C", x=10, y=70, w=110, text="Il viaggio, in Italia, era appena cominciato.",
              size=10, family="serifb"),
     ], balloons=[], overlays=[
-        dict(panel="B", x=9, y=8, w=112,
+        dict(panel="B", x=27, y=17, w=34,
              text="«Questa valigia non si butta. Questa valigia va avanti.»",
-             size=13, family="serif", color=(88, 58, 22), style="plain", align="C"),
+             size=9, family="serif", color=(84, 55, 22), style="plain", align="L"),
         dict(panel="C", x=10, y=20, w=110, text="FINE",
              size=19, family="serifb", color=(246, 232, 198), style="plain", align="C"),
     ]),
