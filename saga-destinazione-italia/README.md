@@ -33,7 +33,7 @@ La storia del **turismo italiano dal Boom economico a oggi** raccontata dalla fa
 - [x] Manoscritti Vol. 2, 3, 4 (prima stesura completa, ~2.100–2.500 parole ciascuno — da espandere a 4.500–7.000 in editing)
 - [x] **Editing Vol. 2** — espansione a ~4.300 parole
 - [x] **Editing Vol. 4** — espansione a ~3.600 parole (da portare a ~4.500 in un ulteriore passaggio)
-- [ ] Editing Vol. 3 — da espandere (~2.460 → ~4.500 parole)
+- [x] **Editing Vol. 3** — espansione a ~3.500 parole
 - [x] **Illustrazioni Vol. 2 — 11/11 scene + copertina generate** (cap. 12 senza illustrazione dedicata per scelta di layout)
 - [x] **EPUB Vol. 2 completo** (12 immagini, 3,8 MB) → `volume-2-tutto-compreso/output/La_valigia_d_Italia_Vol2_Tutto_compreso.epub`
 - [x] **Illustrazioni Vol. 3 — 11/11 scene + copertina generate** (cap. 12 coperto dalla scena-chiave valigia/cartoline)
