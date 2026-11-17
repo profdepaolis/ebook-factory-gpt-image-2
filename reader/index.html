@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La valigia d'Italia — Lettore completo (saga in 4 volumi)</title>
+<style>
+:root {
+  --terra:#8a2b1d; --gold:#d4a017; --paper:#f7efe2; --ink:#2b2118; --card:#fffdf6;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:Georgia,'Times New Roman',serif; color:var(--ink);
+  background:var(--paper); display:flex; min-height:100vh; }
+aside#sidebar { width:290px; min-width:290px; background:#31231a; color:#f1e6d2; padding:18px 14px;
+  position:sticky; top:0; height:100vh; overflow-y:auto; }
+#sidebar h1 { font-size:1.05em; letter-spacing:.04em; color:var(--gold); margin:.2em 0 .1em; }
+#sidebar .saga { font-size:.72em; color:#c9b48a; border-bottom:1px solid #4b3a2c; padding-bottom:.9em; margin-bottom:.8em; }
+.nav-vol { margin:.2em 0; }
+.nav-toggle { width:100%; text-align:left; background:none; border:1px solid #4b3a2c; border-radius:8px;
+  color:#f1e6d2; padding:.45em .6em; font-family:inherit; font-size:.78em; cursor:pointer; }
+.nav-toggle:hover { background:#3d2f24; border-color:var(--gold); }
+.nav-vol.open .nav-toggle { border-color:var(--gold); color:var(--gold); }
+.nav-chapters { display:none; list-style:none; margin:.3em 0 .6em; padding:0 0 0 .4em; }
+.nav-vol.open .nav-chapters { display:block; }
+.nav-chapters a { display:block; color:#d8c9ae; text-decoration:none; font-size:.72em; padding:.18em .5em; border-radius:6px; }
+.nav-chapters a:hover { background:#4b3a2c; color:#fff; }
+main { flex:1; padding:26px 30px 90px; max-width:980px; }
+.volume { display:none; }
+.volume.active { display:block; animation:fade .4s ease; }
+@keyframes fade { from {opacity:0; transform:translateY(8px);} to {opacity:1;} }
+.vol-head { display:flex; gap:22px; align-items:center; background:var(--card); border:1px solid #e3d5bd;
+  border-radius:14px; padding:18px; margin-bottom:26px; box-shadow:0 2px 10px rgba(43,33,24,.08); }
+.vol-cover { width:150px; border-radius:10px; box-shadow:0 4px 14px rgba(43,33,24,.35); }
+.vol-head h1 { color:var(--terra); font-size:1.5em; margin:.1em 0; }
+.vol-sub { color:#6b5b45; font-size:.85em; margin:0; }
+.chapter { background:var(--card); border:1px solid #e3d5bd; border-radius:12px; padding:22px 26px; margin-bottom:22px;
+  box-shadow:0 1px 6px rgba(43,33,24,.06); }
+.chapter h2 { color:var(--terra); font-size:1.35em; border-bottom:3px solid var(--gold); padding-bottom:.3em; }
+.chapter p { font-size:1.02em; line-height:1.72; }
+.chapter em { color:#4a3f31; }
+.plate { margin:1.2em 0; text-align:center; }
+.plate img { max-width:100%; border-radius:10px; box-shadow:0 3px 16px rgba(43,33,24,.28); }
+.apparati table { border-collapse:collapse; width:100%; font-size:.9em; }
+.apparati th,.apparati td { border:1px solid #c9b48a; padding:.35em .55em; text-align:left; }
+.apparati th { background:#f3e9d2; }
+.toolbar { position:fixed; bottom:0; left:290px; right:0; background:rgba(255,253,246,.92); backdrop-filter:blur(6px);
+  border-top:1px solid #e3d5bd; padding:10px 26px; display:flex; gap:12px; align-items:center; }
+.toolbar button { background:var(--terra); color:#fffdf6; border:none; border-radius:8px; padding:.5em 1.1em;
+  font-family:inherit; font-size:.85em; cursor:pointer; }
+.toolbar button:hover { background:#6f2318; }
+.toolbar span { font-size:.8em; color:#6b5b45; }
+@media (max-width:900px) {
+  body { flex-direction:column; }
+  aside#sidebar { width:100%; min-width:0; height:auto; position:relative; }
+  .toolbar { left:0; }
+  main { padding:18px 14px 90px; }
+}
+</style>
+</head>
+<body>
+<aside id="sidebar">
+  <h1>La valigia d'Italia</h1>
+  <div class="saga">Saga storica per ragazzi 9–12 · i 4 volumi completi di illustrazioni<br>© Il progetto La valigia d'Italia</div>
+  <div class="nav-vol" data-vol="vol1"><button class="nav-toggle">Vol. 1 · Mare 500 e autostrada</button><ul class="nav-chapters"><li><a href="#" data-target="vol1-ch1">1. Capitolo 1 — Le città si svuotano</a></li><li><a href="#" data-target="vol1-ch2">2. Capitolo 2 — La valigia di cuoio</a></li><li><a href="#" data-target="vol1-ch3">3. Capitolo 3 — La partenza</a></li><li><a href="#" data-target="vol1-ch4">4. Capitolo 4 — Il casello</a></li><li><a href="#" data-target="vol1-ch5">5. Capitolo 5 — L'autogrill</a></li><li><a href="#" data-target="vol1-ch6">6. Capitolo 6 — L'Italia si accorcia</a></li><li><a href="#" data-target="vol1-ch7">7. Capitolo 7 — Rimini, finalmente!</a></li><li><a href="#" data-target="vol1-ch8">8. Capitolo 8 — L'amico tedesco</a></li><li><a href="#" data-target="vol1-ch9">9. Capitolo 9 — La rotonda sul mare</a></li><li><a href="#" data-target="vol1-ch10">10. Capitolo 10 — La cartolina</a></li><li><a href="#" data-target="vol1-ch11">11. Capitolo 11 — Ritorno</a></li><li><a href="#" data-target="vol1-ch12">12. Capitolo 12 — L'ultima pagina del diario</a></li><li><a href="#" data-target="vol1-ch13">13. Lo sai che…?</a></li><li><a href="#" data-target="vol1-ch14">14. Parole d'epoca</a></li><li><a href="#" data-target="vol1-ch15">15. Linea del tempo</a></li><li><a href="#" data-target="vol1-ch16">16. La storia vera dietro la storia</a></li><li><a href="#" data-target="vol1-apparati">Apparati</a></li></ul></div><div class="nav-vol" data-vol="vol2"><button class="nav-toggle">Vol. 2 · Tutto compreso!</button><ul class="nav-chapters"><li><a href="#" data-target="vol2-ch1">1. Capitolo 1 — Il concorso di nuoto</a></li><li><a href="#" data-target="vol2-ch2">2. Capitolo 2 — Il pullman del villaggio</a></li><li><a href="#" data-target="vol2-ch3">3. Capitolo 3 — La reception e i bracciali colorati</a></li><li><a href="#" data-target="vol2-ch4">4. Capitolo 4 — Il mini-club e l'animatore Vito</a></li><li><a href="#" data-target="vol2-ch5">5. Capitolo 5 — Il walkman</a></li><li><a href="#" data-target="vol2-ch6">6. Capitolo 6 — La crisi del petrolio</a></li><li><a href="#" data-target="vol2-ch7">7. Capitolo 7 — Palinuro fuori dal villaggio</a></li><li><a href="#" data-target="vol2-ch8">8. Capitolo 8 — Paestum</a></li><li><a href="#" data-target="vol2-ch9">9. Capitolo 9 — La spiaggia dei pescatori</a></li><li><a href="#" data-target="vol2-ch10">10. Capitolo 10 — La festa del villaggio e la serenata</a></li><li><a href="#" data-target="vol2-ch11">11. Capitolo 11 — Il compromesso</a></li><li><a href="#" data-target="vol2-ch12">12. Capitolo 12 — La cartolina numero due</a></li><li><a href="#" data-target="vol2-ch13">13. Lo sai che…?</a></li><li><a href="#" data-target="vol2-ch14">14. Parole d'epoca</a></li><li><a href="#" data-target="vol2-ch15">15. Linea del tempo</a></li><li><a href="#" data-target="vol2-ch16">16. La storia vera dietro la storia</a></li><li><a href="#" data-target="vol2-apparati">Apparati</a></li></ul></div><div class="nav-vol" data-vol="vol3"><button class="nav-toggle">Vol. 3 · Agriturismo e Giubileo</button><ul class="nav-chapters"><li><a href="#" data-target="vol3-ch1">1. Capitolo 1 — La busta con le foto nuove</a></li><li><a href="#" data-target="vol3-ch2">2. Capitolo 2 — La mucca Stella e il giro in aia</a></li><li><a href="#" data-target="vol3-ch3">3. Capitolo 3 — Il forno a legna e la ricotta</a></li><li><a href="#" data-target="vol3-ch4">4. Capitolo 4 — Il nonno Oreste racconta</a></li><li><a href="#" data-target="vol3-ch5">5. Capitolo 5 — Computer e posta Internet</a></li><li><a href="#" data-target="vol3-ch6">6. Capitolo 6 — La tangente del contadino e la legge 730</a></li><li><a href="#" data-target="vol3-ch7">7. Capitolo 7 — Deviazione per Roma</a></li><li><a href="#" data-target="vol3-ch8">8. Capitolo 8 — Roma piena</a></li><li><a href="#" data-target="vol3-ch9">9. Capitolo 9 — La cartolina speciale</a></li><li><a href="#" data-target="vol3-ch10">10. Capitolo 10 — La busta telefonica</a></li><li><a href="#" data-target="vol3-ch11">11. Capitolo 11 — Ritorno alla Quercia</a></li><li><a href="#" data-target="vol3-ch12">12. Capitolo 12 — Le lire vanno in pensione</a></li><li><a href="#" data-target="vol3-ch13">13. Lo sai che…?</a></li><li><a href="#" data-target="vol3-ch14">14. Parole d'epoca</a></li><li><a href="#" data-target="vol3-ch15">15. Linea del tempo</a></li><li><a href="#" data-target="vol3-ch16">16. La storia vera dietro la storia</a></li><li><a href="#" data-target="vol3-apparati">Apparati</a></li></ul></div><div class="nav-vol" data-vol="vol4"><button class="nav-toggle">Vol. 4 · Selfie a Venezia</button><ul class="nav-chapters"><li><a href="#" data-target="vol4-ch1">1. Capitolo 1 — 139 milioni di arrivi</a></li><li><a href="#" data-target="vol4-ch2">2. Capitolo 2 — Il Frecciarossa</a></li><li><a href="#" data-target="vol4-ch3">3. Capitolo 3 — L'app e il contributo di accesso</a></li><li><a href="#" data-target="vol4-ch4">4. Capitolo 4 — Venezia mordi e fuggi</a></li><li><a href="#" data-target="vol4-ch5">5. Capitolo 5 — La Venezia dei veneziani</a></li><li><a href="#" data-target="vol4-ch6">6. Capitolo 6 — Piazza San Marco e il silenzio</a></li><li><a href="#" data-target="vol4-ch7">7. Capitolo 7 — Airbnb e chi ci abita</a></li><li><a href="#" data-target="vol4-ch8">8. Capitolo 8 — Treno per Roma</a></li><li><a href="#" data-target="vol4-ch9">9. Capitolo 9 — Il Colosseo con il tetto giornaliero</a></li><li><a href="#" data-target="vol4-ch10">10. Capitolo 10 — La città dopo il Giubileo</a></li><li><a href="#" data-target="vol4-ch11">11. Capitolo 11 — L'ultima cartolina</a></li><li><a href="#" data-target="vol4-ch12">12. Capitolo 12 — La valigia torna</a></li><li><a href="#" data-target="vol4-ch13">13. Lo sai che…?</a></li><li><a href="#" data-target="vol4-ch14">14. Parole d'epoca</a></li><li><a href="#" data-target="vol4-ch15">15. Linea del tempo</a></li><li><a href="#" data-target="vol4-ch16">16. La storia vera dietro la storia</a></li><li><a href="#" data-target="vol4-apparati">Apparati</a></li></ul></div>
+</aside>
+<main id="reader">
+  
+<article class="volume" id="vol1" data-vol="vol1">
+  <header class="vol-head">
+    <img class="vol-cover" src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_01_cover.jpg" alt="Copertina Vol. 1 · Mare 500 e autostrada" loading="lazy">
+    <div><h1>Vol. 1 · Mare 500 e autostrada</h1><p class="vol-sub">1964 — Marco, 10 anni · La valigia d'Italia</p></div>
+  </header>
+  <section class="chapter" id="vol1-ch1"><h2>Capitolo 1 — Le città si svuotano</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_02_breda.jpg" alt="Illustrazione — Capitolo 1 — Le città si svuotano" loading="lazy"></figure><p>Il 1° agosto 1964 la Breda chiuse i cancelli alle undici di mattina, con la sirena che risuonò lunga e piena su Sesto San Giovanni: tre settimane di ferie davanti. Migliaia di operai in tuta blu sciamarono verso i tram, verso gli stadi, verso i mercati dell&rsquo;usato, verso le stazioni. Nessuno aveva fretta. Il tempo, finalmente, era di tutti.</p>
+<p>A casa Morelli, in Porta Venezia, l&rsquo;atmosfera era cambiata già da una settimana. Sulla sedia della cucina giaceva il costume nuovo di Marco, comprato per l&rsquo;occasione in un negozio di Corso Buenos Aires: blu con i cavallini, la stoffa che brillava come quella delle reclame. Sul tavolo, sotto il coperchio di vetro rotondo, c&rsquo;erano i biscotti che Lina preparava ogni domenica. Il calendario appeso vicino al frigorifero mostrava, nel riquadro del 3 agosto, una scritta rossa fatta a mano: <strong>FERIE!</strong></p>
+<p>— Marco, — disse la mamma, infilando una federa sul braccio come guanto per spolverare — potrebbe quest&rsquo;anno andare diversamente dalle ultime vacanze.</p>
+<p>— Significa che si va a Genova? — chiese Marco, alzando la testa dal quaderno dei compiti. Sua cugina Rita abitava a Genova e gli mandava ogni anno una cartolina con la Lanterna.</p>
+<p>— Meglio, — disse la mamma. — Quest&rsquo;anno si va al mare.</p>
+<p>Marco sollevò gli occhi. Il mare. La parola pesava come una pietra liscia.</p>
+<p>Marco aveva dieci anni, i capelli neri a spazzola, due scapole che sporgevano sotto la maglietta e una immaginazione che correva molto più veloce delle sue gambe. In classe, alla domanda &ldquo;dove vorresti andare?&rdquo;, aveva sempre risposto: &ldquo;al mare&rdquo;, come se il mare fosse una città vera e non una superficie d&rsquo;acqua. Sapeva dove stava il mare — l&rsquo;aveva visto una volta, all&rsquo;uscita della gita scolastica a Savona, a settanta chilometri di distanza e dietro il finestrino sporco di un autobus — ma non si era mai tuffato, mai sdraiato, mai sentito le onde strappargli i piedi sotto la sabbia.</p>
+<p>Il papà, Oreste, lavorava alla Breda da nove anni. Era operaio di mestiere, le braccia grosse e le unghie sempre sporche d&rsquo;olio, ma con le mani sapeva fare tutto: il frullatore, la radio, il carrello della spesa che Lina aveva voluto comprare al mercato dell&rsquo;usato invece che dal ferramenta. E quando si parlava di viaggi, gli brillavano gli occhi come a un bambino nel giorno dei Re.</p>
+<p>Ogni sera, da due mesi, ripeteva la stessa frase:</p>
+<p>— Quest&rsquo;anno si va al mare.</p>
+<p>Quella mattina, sul tram numero 29 che attraversava Milano vuota, Marco guardò fuori dal finestrino e vide le saracinesche abbassate, i marciapiedi deserti, i gatti che dormivano al sole sui davanzali. La città chiusa per ferie sembrava un gigante in letargo con le coperte tirate fino al mento.</p>
+<p>— Tutti dove vanno? — chiese alla mamma.</p>
+<p>— Alla montagna, al lago, al paese dai nonni, al mare, — rispose la mamma. — Ferragosto è così: in Italia, in un solo giorno, si mette in moto un Paese intero. Treni pieni, macchine piene, strade piene.</p>
+<p>— E noi?</p>
+<p>— Noi andiamo a Rimini, — disse la mamma e gli sorrise. — Al mare, Marco. Il mare per davvero.</p>
+<p>Marco schiacciò il naso contro il vetro. Fuori, Milano pareva sospesa. Dentro, la parola &ldquo;mare&rdquo; cresceva più grande dei sedili, più grande del tram, più grande di tutte le cose che non aveva mai visto.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch2"><h2>Capitolo 2 — La valigia di cuoio</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_03_valigia.jpg" alt="Illustrazione — Capitolo 2 — La valigia di cuoio" loading="lazy"></figure><p>Il sabato, il mercato di Porta Venezia era un fiume di gente. Ceste di peperoni gialli e rossi allineati come soldati, banchi di sapone di Marsiglia, maglioni di lana pesante, cappelli di paglia con il nastro colorato, radio a transistor che gracchiavano, giocattoli di latta, scarpe da bambini impilate in piramidi. E, in fondo al viale, il banco delle valigie usate.</p>
+<p>Era un banco diverso dagli altri: non vendeva niente di nuovo, ma solo cose che avevano già viaggiato. Marco lo conosceva bene — ci erano passati tutti almeno una volta, comprando un borsello per l&rsquo;uomo o un beauty-case per la nonna — ma quel mattino era diverso. Quel mattino avevano un&rsquo;urgenza.</p>
+<p>E poi la vide.</p>
+<p>In cima al mucchio c&rsquo;era una <strong>valigia di cuoio marrone tabacco</strong>, con gli angoli ammaccati come se avesse combattuto, e una fibbia di ottone che luccicava sotto la polvere. Sul coperchio, un&rsquo;etichetta di cartone sbiadito diceva: <strong>MORELLI — MILANO</strong>.</p>
+<p>— Papà! — Marco lo tese per la manica. — Questa. Proprio questa.</p>
+<p>Oreste sistemò gli occhiali e la prese in mano. Era pesante, ma non troppo. Il cuoio sotto le dita era morbido come una sella vecchia.</p>
+<p>— Signora, — disse il venditore, — è di cuoio vero. Veniva da un viaggio in Francia del 1938, mi ha detto il padrone di prima. È vissuta, ma le resta ancora una vita intera.</p>
+<p>— Quanto? — chiese Oreste.</p>
+<p>— Duemilaquattrocento lire.</p>
+<p>Oreste fece quello che faceva quando qualcosa costava più di quanto volesse spendere: finse di indietreggiare. Fece due passi indietro, squadrò la valigia da lontano, scosse la testa.</p>
+<p>— Troppo.</p>
+<p>— Millesettecento, allora. Ultimo prezzo.</p>
+<p>— Duemiladuecento, — disse Oreste. — È l&rsquo;ultima offerta.</p>
+<p>Fecero finta di riflettere entrambi. Poi la valigia passò di mano per duemiladuecento lire, con la promessa del venditore che &ldquo;le avrebbe lucidate prima di consegnarla&rdquo;.</p>
+<p>Quando Lina la vide sul tavolo di cucina, la esaminò come un medico. Sollevò il coperchio, annusò l&rsquo;interno — odorava di cuoio vecchio, di foglie e di un profumo lontano, forse di colonia — e scosse la testa.</p>
+<p>— Ma è usata!</p>
+<p>— È vissuta, — corresse Oreste, — non è la stessa cosa.</p>
+<p>Quella sera, dopo cena, Oreste prese un panno di lino, dell&rsquo;olio di lino, e una spazzola morbida. Spennellò la valigia con cura, ripassando ogni angolo, ogni ammaccatura, come se stesse curando un paziente. Marco guardava affascinato dal corridoio.</p>
+<p>— Perché i viaggi cominciano sempre dalla valigia? — chiese.</p>
+<p>Oreste smise di lucidare e lo guardò.</p>
+<p>— Perché la valigia è il cuore del viaggio. Chi viaggia con una buona valigia arriva più leggero e torna più pieno.</p>
+<p>Marco non capì del tutto. Ma quando la valigia fu asciutta e lucida sul tavolo, capì una cosa: non era una cosa. Era un&rsquo;intenzione.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch3"><h2>Capitolo 3 — La partenza</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_04_partenza.jpg" alt="Illustrazione — Capitolo 3 — La partenza" loading="lazy"></figure><p>Partirono un lunedì, alle sei del mattino. Milano era in silenzio quando la Cinquecento bianca — comprata l&rsquo;anno prima con un anno di rate, quattordici mila lire al mese che ancora pesavano come un macigno — scivolò fuori da Corso Buenos Aires e puntò verso nord-est.</p>
+<p>Sul tetto c&rsquo;era la valigia, legata con la cinghia di cuoio intrecciato che Oreste aveva trovato in un cassetto del ripostiglio. Dentro la valigia: tre camicie, due vestiti di Lina, il costume blu con i cavallini, le scarpe di ricambio, il thermos del caffè, due panini imbottiti di mortadella e un ombrello — «non si sa mai», disse la mamma.</p>
+<p>Nel bagagliaio, infilati in mezzo ai biscotti: il termos del tè, il telo rosso della spiaggia, il sacchetto della farmacia (&ldquo;punture d&rsquo;ortica&rdquo;), il libretto d&rsquo;istruzioni della 500 e, piegato con cura, il modellino di plastica dell&rsquo;Autostrada del Sole che Oreste aveva comprato per Marco la settimana prima.</p>
+<p>Sul sedile posteriore c&rsquo;era Marco, con lo zaino tra le gambe e il cuscino a rotolo dietro la schiena. Non aveva le cinture di sicurezza — nel 1964, sul sedile posteriore delle utilitarie, le cinture non c&rsquo;erano ancora. Mancava quasi vent&rsquo;anni alla legge che le avrebbe imposte, ma allora nessuno sembrava farci caso; le macchine erano piccole e i viaggi, si diceva, andavano fatti &ldquo;con le mani strette alle ginocchia&rdquo;.</p>
+<p>— Quante ore? — chiese Marco stringendo il cuscino.</p>
+<p>— Dipende, — rispose il papà controllando la mappa piegata sul davanti, — ma con la nuova autostrada, da Milano a Rimini, ci mettiamo circa sei ore con le soste. Prima ci volevano due giorni.</p>
+<p>— Due giorni?</p>
+<p>— Due. Dormivamo in un fienile o in una locanda di passaggio. Le strade erano sterrate, i camion sollevavano polvere, gli autobus si fermavano ogni ora. Ora l&rsquo;Autostrada del Sole ce l&rsquo;hanno fatta: larga, asfaltata, illuminata, con le aree di servizio.</p>
+<p>— E tu ci avevi viaggiato?</p>
+<p>— Io ci ero arrivato una volta, in treno, a Rimini con tuo zio. Mai in macchina. Oggi è la prima volta. Per tutti.</p>
+<p>Marco aprì il finestrino e infilò fuori il naso. Il vento di prima mattina sapeva di pane fresco, di benzina e di erba bagnata nella campagna. Milano, alle loro spalle, si staccò dallo specchietto retrovisore e divenne, lentamente, un ricordo lontano e rosa.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch4"><h2>Capitolo 4 — Il casello</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_05_casello.jpg" alt="Illustrazione — Capitolo 4 — Il casello" loading="lazy"></figure><p>Arrivarono al casello di Milano alle sei e venti. Muro basso di cemento, sbarra bianca e rossa, gabbiotto con vetri azzurrati. Un uomo in maglietta con la scritta <strong>AUTOSTRADA</strong> li osservò avvicinarsi e sorrise.</p>
+<p>— Buongiorno! Destinazione?</p>
+<p>— Rimini! — annunciò Oreste, con l&rsquo;orgoglio di chi sta per compiere un&rsquo;impresa.</p>
+<p>L&rsquo;uomo abbassò la sbarra e gridò:</p>
+<p>— Buon viaggio e… attenti al sole!</p>
+<p>Marco non si era mai sentito così importante. Entrare nell&rsquo;Autostrada era come entrare in un film: asfalto nero e liscio, linee bianche appena ridipinte, una corsia di sorpasso e due di marcia, e tutt&rsquo;intorno i campi di mais che si estendevano all&rsquo;infinito.</p>
+<p>— Papà, perché si chiama Autostrada del Sole?</p>
+<p>— Perché va dal Nord al Sud, — disse Oreste — da Milano a Napoli, e attraversa l&rsquo;Italia da parte a parte. L&rsquo;hanno costruita per unire il Paese: il nord ricco e il sud agricolo, un&rsquo;unica strada, un&rsquo;unica nazione.</p>
+<p>— E ci sono riusciti?</p>
+<p>— Quasi. Milano fino a Roma è aperta. Manca un pezzo, tra Chiusi e Orvieto. La radio dice che lo apriranno il 4 ottobre prossimo. Poi sarà completa: 760 chilometri, sei regioni, da un capo all&rsquo;altro dell&rsquo;Italia.</p>
+<p>Marco immaginò una strada lunga come il Paese, che collegava la sua casa a tutte le case d&rsquo;Italia. Si chiese se i bambini di Napoli, dall&rsquo;altra parte, la vedessero dalle finestre, quella strada. Sì, la vedevano. E forse, un giorno, ci sarebbe andato anche lui: tutto intero, Milano–Napoli, un viaggio unico.</p>
+<p>Il papà gli raccontò che l&rsquo;autogrill di Fiorenzuola d&rsquo;Arda — diciotto chilometri dopo Piacenza — era stato il primo della storia, aperto da una famiglia di salumieri pavesi nel 1959. Da allora l&rsquo;autostrada era cresciuta come un serpente che si snoda nella pianura: Milano–Parma nel dicembre del 1958, Bologna–Firenze nel dicembre del 1960, Roma–Napoli nel settembre del 1962.</p>
+<p>— E il resto? — chiese Marco.</p>
+<p>— Il resto è in cantiere, — disse il papà. — Ma presto ci arriveremo anche noi, a Napoli. Tutti, tutta l&rsquo;Italia.</p>
+<p>Marco rimase in silenzio, guardando i campi scorrergli accanto. Pensò che, se l&rsquo;Italia avesse avuto una strada del genere, anche i bambini delle Calabria e della Lucania avrebbero un giorno visto il mare come lui stava per vederlo. C&rsquo;era qualcosa di grande, in quella striscia d&rsquo;asfalto, che non sapeva spiegare.</p></section>
+<section class="chapter" id="vol1-ch5"><h2>Capitolo 5 — L'autogrill</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_06_autogrill.jpg" alt="Illustrazione — Capitolo 5 — L'autogrill" loading="lazy"></figure><p>Alle otto e un quarto, dopo Piacenza, il papà fece la prima sosta. L&rsquo;insegna appariva da lontano come un miraggio dorato contro il cielo azzurro: <strong>AUTOGRILL</strong>, con tre archi bianchi che ondeggiavano nel sole.</p>
+<p>— È quello vero? — chiese Marco saltando giù dalla 500 prima che si fosse fermata del tutto.</p>
+<p>— Quasi il primo, — disse la mamma. — Il primo Autogrill Pavesi ha aperto nel 1959 a Fiorenzuola d&rsquo;Arda, sull&rsquo;A1. Questo è più giovane, ma è uguale: ristorante, benzina, bagni puliti e self-service. Gratis.</p>
+<p>— Gratis?!</p>
+<p>Marco non riusciva a crederci. In autostrada i bagni gratis. A casa sua, il bagno era sempre stato a pagamento — la mamma lo faceva pagare al fratellino per scherzo, cinque lire alla volta — e lì, invece, le famiglie potevano entrare, lavarsi la faccia, ricaricarsi e ripartire senza aprire il portafoglio.</p>
+<p>Dentro c&rsquo;era la folla della domenica: famiglie con le valigie sul tetto, camionisti con le cappelli di paglia, bambini che litigavano per il gelato alla frutta, un uomo in giacca che leggeva il giornale seduto su una sedia di plastica. Il papà prese tre caffè e due brioche; la mamma un succo di frutta; Marco un gelato al pistacchio, che costava cinquanta lire. Sul bancone c&rsquo;erano le prime pagine dei giornali. Marco lesse a voce alta il titolone sulla prima pagina della <strong>Stampa</strong>:</p>
+<p><strong>«IN ARRIVO L&rsquo;AUTOSTRADA COMPLETA: OTTOBRE STORICO PER L&rsquo;ITALIA»</strong></p>
+<p>Sotto, in piccolo: <em>«Ieri a Bologna il cantiere fu salutato tra pomodori e applausi; il Presidente del Consiglio annuncia: &ldquo;chiude l&rsquo;ultimo tratto il 4 ottobre&rdquo;»</em>.</p>
+<p>— Papà, lo sai che anche i tedeschi viaggiano come noi? — chiese Marco indicando un gruppo di ragazzi abbronzati con le macchine fotografiche Agfa appese al collo.</p>
+<p>— Eccome, — disse Oreste, — da un paio d&rsquo;anni l&rsquo;Italia è invasa dai turisti del Nord Europa. Olandesi, tedeschi, francesi, inglesi. Tutti cercano il sole, il mare, il cibo buono e una settimana di relax.</p>
+<p>— E noi italiani, dove andiamo?</p>
+<p>Oreste sorrise.</p>
+<p>— Dove andiamo noi, Marco?</p>
+<p>Marco si guardò intorno: famiglie come la sua, valigie sul tetto, bambini incantati davanti al bancone dei gelati.</p>
+<p>— Al mare, — disse. — Come tutti.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch6"><h2>Capitolo 6 — L'Italia si accorcia</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_07_pianura.jpg" alt="Illustrazione — Capitolo 6 — L'Italia si accorcia" loading="lazy"></figure><p>Dopo l&rsquo;autogrill il viaggio riprese. Marco guardava dal finestrino i paesi che si avvicinavano e si rimpicciolivano: Piacenza, Parma, Reggio Emilia, Modena, Bologna, poi la pianura che si allungava e le colline che si gonfiavano come un respiro.</p>
+<p>Alla radio c&rsquo;era un giradischi automatico. Dopo una trasmissione di notizie, partì una canzone che Marco conosceva bene:</p>
+<p><em>«Sapore di sale…»</em></p>
+<p>— Quella è dell&rsquo;estate scorsa, — disse Oreste, — è già un classico. Aspetta che ne arriva una nuova di quest&rsquo;anno.</p>
+<p>E infatti, dopo due canzoni, arrivò il 45 giri dell&rsquo;estate 1964:</p>
+<p><em>«Una rotonda sul mare / una rotonda sul mare…»</em></p>
+<p>— Quella sì! — esclamò Oreste, alzando il volume. — Fred Bongusto. La impareremo tutti entro Ferragosto.</p>
+<p>Marco la imparò a memoria. Ogni tanto la mamma appoggiava la guancia al finestrino e cantava a bassa voce, e Marco finse di non vedere che aveva le lacrime agli occhi.</p>
+<p>A Bologna si fermarono per un tramezzino e un caffè in un bar di Porta Lame. Dal bar, Oreste sbirciò la mappa piegata sul cruscotto:</p>
+<p>— Da qui a Rimini ci sono ancora duecento chilometri. Strade dritte, tanti camion, pochi paesi. Teniamo la destra e andiamo.</p>
+<p>Marco guardava i camion che sfrecciavano: <strong>IVECO</strong>, <strong>FIAT</strong>, <strong>OM</strong>. Alcuni trasportavano rimorchi con auto di lusso coperte da teli; altri macchine agricole; altri ancora erano tir tedeschi diretti al Sud. In quegli anni, comprare un&rsquo;auto era il sogno di tutti gli operai — e l&rsquo;autostrada ne era l&rsquo;emblema più potente.</p>
+<p>— Papà, — disse dopo un po&rsquo;, — se prima ci volevano due giorni per Rimini, e adesso ce ne vogliono sei ore, l&rsquo;Italia è diventata più piccola?</p>
+<p>Oreste scoppiò a ridere.</p>
+<p>— Non più piccola, — disse. — Solo più vicina.</p>
+<p>Marco rifletté. Forse l&rsquo;Italia era una coperta: più veloci andavi, più la coperta si stringeva.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch7"><h2>Capitolo 7 — Rimini, finalmente!</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_08_rimini.jpg" alt="Illustrazione — Capitolo 7 — Rimini, finalmente!" loading="lazy"></figure><p>Arrivarono a Rimini che era quasi sera. Il cielo era rosa e l&rsquo;aria sapeva di sale e di pesce fritto. L&rsquo;insegna della pensione lampeggiava in rosso: <strong>LA SIRENA — CAMERE — PENSIONE COMPLETA</strong>.</p>
+<p>La signora Argia, la padrona, era una donna bassa e larga, con un foulard rosso in testa e un sorriso che riempiva tutto il cortile.</p>
+<p>— Benvenuti! Due o tre notti?</p>
+<p>— Tutta la settimana, signora, — disse la mamma. — Tre letti e uno sdraio.</p>
+<p>— Allora avete fatto bene a venir a Rimini, — disse la signora versando tre bicchieri di vino della casa (due per i grandi, uno di aranciata per Marco). — Qui il mare è basso, la sabbia è fine e i prezzi sono onesti. A Cesenatico vanno i tedeschi; qui a Rimini ci sono gli italiani.</p>
+<p>La pensione era semplice: cortile con tavoli di marmo, veranda con la radio sempre accesa su Radio Rimini, quattro piani con le persiane verdi. La camera di Marco dava sul tetto: la finestra si apriva sul mare di tetti di tegole e, più in là, sul cielo. Di notte, Marco sentì per la prima volta il rumore delle onde. Non sembrava il rumore di niente di quello che conosceva. Sembrava il respiro lento di qualcuno di enorme che dormiva sotto di lui.</p>
+<p>— Domani, — disse il papà spegnendo la luce, — il mare vero.</p>
+<p>Marco non dormì per almeno un&rsquo;ora.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch8"><h2>Capitolo 8 — L'amico tedesco</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_09_dieter.jpg" alt="Illustrazione — Capitolo 8 — L'amico tedesco" loading="lazy"></figure><p>La spiaggia il primo mattino era un formicaio in festa. Ombrelloni a righe, sdraio in legno, tende di tela colorata, bambini in costume che correvano urlando, venditori di gelati sul triciclo, un gruppo di nonne sotto un tendalino che sbucciava le pesche.</p>
+<p>Il papà piantò l&rsquo;ombrellone. La mamma stese il telo rosso. Marco corse dritto verso l&rsquo;acqua.</p>
+<p>Il mare era freddissimo e bellissimo. Entrò fino alle ginocchia, alle anche, alla pancia — il cuore in gola — e poi si tuffò di spalle. Risalì urlando:</p>
+<p>— CE L&rsquo;HO FATTA!</p>
+<p>— BRAVO! — gridò il papà dalla riva. — ADESSO TORNA, NON SEI L&rsquo;OCEANICO!</p>
+<p>Marco tornò tossendo e ridendo. E fu allora, sulla sabbia bagnata, che incontrò l&rsquo;amico tedesco.</p>
+<p>Si chiamava <strong>Dieter</strong>, aveva la sua età ed era biondo come il grano con gli occhi del colore del mare del Nord. Stava costruendo un castello di sabbia con la cugina e un secchiello rosso.</p>
+<p>— Ciao, — disse Dieter in un italiano perfetto, con un accento che sembrava rubato a un vecchio film.</p>
+<p>— Ciao, — rispose Marco, stupito.</p>
+<p>— Sono di Monaco, — spiegò Dieter. — Mio padre è ingegnere dell&rsquo;autostrada. Ha lavorato al Brennero e ora viene qui in vacanza ogni anno. Mio nonno dice che l&rsquo;Italia è bella perché &ldquo;tutto è un po&rsquo; in ritardo e tutto è un po&rsquo; più buono&rdquo;.</p>
+<p>Marco scoppiò a ridere.</p>
+<p>— È vero, — disse. — Anche i treni?</p>
+<p>— Anche i treni. Soprattutto i treni.</p>
+<p>Dieter tirò fuori dalla tasca della maglietta una macchina fotografica di metallo, una Agfa piccola piccola, e scattò una foto a Marco con le onde sullo sfondo.</p>
+<p>— Te la mando, — promise.</p>
+<p>— E tu cosa fai, a Monaco, quando non sei in spiaggia?</p>
+<p>— Vado in piscina. Ma non è la stessa cosa. Qui il mare è infinito, la piscina è un catino.</p>
+<p>Marco non sapeva cosa fosse una piscina. Suo nonno raccontava che a Milano c&rsquo;era la piscina comunale di Porta Volta, e che ci si poteva nuotare dentro. Forse un giorno ci sarebbe andato. Ma ora c&rsquo;era il mare, e questo bastava.</p>
+<p>Rimasero seduti un pezzo a guardare le onde. Nessuno dei due parlava dell&rsquo;altro da più di cinque minuti, eppure non c&rsquo;era silenzio imbarazzato. C&rsquo;era solo il rumore del mare e, ogni tanto, la voce di Dieter che contava i secondi tra un&rsquo;onda e l&rsquo;altra:</p>
+<p>— Uno… due… tre… quattro… splash!</p></section>
+<section class="chapter" id="vol1-ch9"><h2>Capitolo 9 — La rotonda sul mare</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_10_festa.jpg" alt="Illustrazione — Capitolo 9 — La rotonda sul mare" loading="lazy"></figure><p>La sera, alla pensione, la radio suonava sempre <strong>&ldquo;Una rotonda sul mare&rdquo;</strong>. La signora Argia ballava con il marito tra i tavoli del cortile, le sedie di legno cigolavano, il profumo di pesce alla griglia saliva dalle cucine. Un gruppo di tedeschi cantava &ldquo;Sole, sole, sole…&rdquo; a squarciagola e tutti battevano le mani.</p>
+<p>Mercoledì, in spiaggia, arrivò la banda. Trombe, sassofoni, timpani. Il bagnino salì sul trespolo di legno e annunciò col megafono:</p>
+<p>— QUESTA SERA, SABATO 15 AGOSTO, GRANDE FESTA DI FERRAGOSTO! INGRESSO LIBERO! BRANDI E SALSICCE! DANZE ALL&rsquo;APERTO!</p>
+<p>Alle sei e mezza la rotonda sul lungomare si riempì come un teatro. Le famiglie portarono le sedie di legno e le coperte; i ragazzi si misero in prima fila; i nonni si sedettero ai lati con le birre in mano. Il sole batteva sull&rsquo;Adriatico e lo trasformava in un tappeto di rame e oro.</p>
+<p>La banda attaccò con &ldquo;Abbronzatissima&rdquo;. Poi toccò a &ldquo;Una rotonda sul mare&rdquo; per la terza volta in tre giorni — e nessuno si lamentò. Anzi: tutti ricominciarono a cantare.</p>
+<p>Marco non dimenticò mai quella sera. Ricordava:</p>
+<p>— Il profumo di salsedine e di salsicce sul fuoco.
+— La signora Argia che si toglieva il foulard e ballava davvero, con la pancia che ondeggiava.
+— Il papà che ballava con la mamma in mezzo al cortile, e la mamma che gli diceva &ldquo;Oreste, per favore, non si fa!&rdquo; ma rideva.
+— Dieter che scattò una foto collettiva con la sua Agfa.
+— Il momento in cui tutti insieme, tedeschi e italiani, alzarono le braccia al cielo quando le luci della rotonda si accesero.</p>
+<p>Tornato in camera, Marco aprì il quaderno e scrisse:</p>
+<p><em>«Stasera ho visto mio papà ballare. Non sapevo che sapesse. Stasera ho capito una cosa: in vacanza siamo tutti bambini. Anche i grandi.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol1-ch10"><h2>Capitolo 10 — La cartolina</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_11_cartolina.jpg" alt="Illustrazione — Capitolo 10 — La cartolina" loading="lazy"></figure><p>Giovedì pomeriggio, giorno di pioggia. Una pioggia estiva, calda, che durò un&rsquo;ora e se ne andò lasciando l&rsquo;aria lavata e i tetti che brillavano.</p>
+<p>Marco restò in pensione e scrisse la cartolina.</p>
+<p>Scelse una cartolina con la foto della spiaggia di Rimini: ombrelloni colorati e un mare così azzurro che non sembrava vero. Senza la foto, sarebbe stata una cartolina qualunque. Con la foto, era Rimini.</p>
+<p>Sul davanti scrisse con la penna biro blu:</p>
+<p><em>«Cara Nonna Rosa,</em>
+<em>questa è la prima cartolina della mia vita. Sono a Rimini e non voglio tornare. Il mare è freddissimo, il gelato è buonissimo, il papà balla, la mamma canta. Oggi la radio ha detto che il 4 ottobre finiranno l&rsquo;autostrada. Dicono che quando sarà completa si andrà da Milano a Napoli senza cambiare mai. Non ci credo, ma è bello.</em>
+<em>Il tuo nipotino che diventa grande,</em>
+<em>Marco»</em></p>
+<p>Sul retro: <em>&ldquo;Rosa Morelli, Via Manzoni 12, Milano&rdquo;</em>.</p>
+<p>— Papà, perché si mette il francobollo?</p>
+<p>— Perché il francobollo è il biglietto che la lettera paga per viaggiare, — spiegò Oreste. — Si chiama <strong>tassa postale</strong>. Se non ci fosse, le Poste non avrebbero i soldi per pagare chi porta le lettere da una città all&rsquo;altra.</p>
+<p>— Quanto costa?</p>
+<p>— Dieci lire per le lettere, cinque per le cartoline. Corri giù a chiederlo alla signora Argia.</p>
+<p>La signora Argia confermò: cinque lire. Marco tornò con un francobollo grigio con l&rsquo;effigie del Presidente Segni, lo appiccicò con la lingua, e infilò la cartolina nella cassetta rossa all&rsquo;ingresso della pensione.</p>
+<p><em>Arrivederci, cartolina</em>, pensò guardandola scomparire dentro lo sportello. <em>Buon viaggio.</em></p>
+<hr /></section>
+<section class="chapter" id="vol1-ch11"><h2>Capitolo 11 — Ritorno</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-1-mare-500-autostrada/assets/illus_12_radio.jpg" alt="Illustrazione — Capitolo 11 — Ritorno" loading="lazy"></figure><p>Domenica pomeriggio: ora di tornare. Il papà aveva saldato il conto con la signora Argia — ottomila lire per tutta la settimana, colazione, pranzo, cena e spiaggia inclusi — e la valigia di cuoio, di nuovo piena di cose comprate a Rimini (tre teli da mare, un poster con la rotonda, un pacchetto di conchiglie e due pacchi di biscotti), era tornata sul tetto.</p>
+<p>Prima di salire in macchina, Oreste accese la radio nella sala da pranzo per sentire le notizie del traffico.</p>
+<p>La voce del radiocronista disse:</p>
+<p>— …e così, il <strong>4 ottobre 1964</strong>, l&rsquo;Autostrada del Sole sarà completata. Il tratto Chiusi–Orvieto, l&rsquo;ultimo mancante, sarà aperto alla presenza del Presidente del Consiglio. Da Milano a Napoli, <strong>760 chilometri senza interruzioni</strong>. L&rsquo;Italia sarà finalmente unita da un nastro d&rsquo;asfalto.</p>
+<p>Nella sala da pranzo calò il silenzio. Poi il papà disse, lentamente, come parlando a sé stesso:</p>
+<p>— Quattro ottobre.</p>
+<p>— Papà? — fece Marco.</p>
+<p>Oreste si sedette di fronte a lui.</p>
+<p>— Marco, — disse, — io quando ero bambino l&rsquo;autostrada non c&rsquo;era. Per andare da Milano a Rimini ci volevano due giorni, e in treno si cambiava a Bologna e a Ravenna. Tu invece sei andato e tornato in un giorno. E tuo figlio — Dio voglia che tu ne abbia uno — tuo figlio andrà da Milano a Napoli in quattro ore. Ti rendi conto?</p>
+<p>Marco si rese conto. O almeno ci provò.</p>
+<p>— Papà, — disse, — la valigia non si butta. La teniamo. La diamo ai nostri figli.</p>
+<p>Oreste restò in silenzio per qualche secondo. Poi gli arruffò i capelli e sorrise.</p>
+<p>— La teniamo. Giuro. Questa valigia non resterà ferma.</p>
+<hr /></section>
+<section class="chapter" id="vol1-ch12"><h2>Capitolo 12 — L'ultima pagina del diario</h2><p>A casa, la valigia di cuoio tornò sul ripostiglio, sopra l&rsquo;armadio, con dentro i teli da mare arrotolati e il diario di bordo sporco di sabbia e sale.</p>
+<p>Prima di riporlo, Marco aggiunse un&rsquo;ultima pagina:</p>
+<p><em>«L&rsquo;ho scritta io, Marco Morelli, classe IV elementare, 17 agosto 1964.</em></p>
+<p><em>Quest&rsquo;anno la Breda ha chiuso tre settimane e siamo andati a Rimini. Non avevo mai visto il mare: è freddissimo, è enorme, e il gelato al pistacchio costa cinquanta lire. Abbiamo conosciuto un ragazzo tedesco che si chiama Dieter e ha la macchina fotografica. Il papà ha ballato con la mamma alla festa del Ferragosto. Il 4 ottobre finiranno l&rsquo;Autostrada del Sole.</em></p>
+<p><em>Un giorno andrò da Milano a Napoli in treno, tutto intero. E un giorno porterò i miei figli su questa stessa valigia.</em></p>
+<p><em>Questa valigia non si butta. Questa valigia va avanti.»</em></p>
+<p>Marco chiuse il quaderno, lo infilò nella valigia e spense la luce del ripostiglio.</p>
+<p>Dall&rsquo;altra parte del corridoio, suo papà russava già. La mamma leggeva <strong>Stop</strong> sotto la luce del comodino. Le città d&rsquo;Italia tornavano a riempirsi.</p>
+<p>Ma di una cosa erano tutti d&rsquo;accordo, senza bisogno di dirselo:</p>
+<p>Il viaggio, in Italia, era appena cominciato.</p>
+<hr />
+<h1>Apparati</h1></section>
+<section class="chapter" id="vol1-ch13"><h2>Lo sai che…?</h2><ol>
+<li><strong>Prima del 1959 solo il 13% degli italiani andava in vacanza.</strong> Negli anni &lsquo;60 la percentuale salì al 21%; negli anni &lsquo;80 al 43% (Istat, via Università di Torino — E. Locci). Il turismo di massa nacque in quegli anni.</li>
+<li><strong>L&rsquo;Autostrada del Sole fu costruita dal 1956 al 1964.</strong> 760 km da Milano a Napoli; il 4 ottobre 1964 fu completata e aperto il tratto Chiusi–Orvieto. Prima c&rsquo;erano due giorni di viaggio; dopo, sette-otto ore.</li>
+<li><strong>La Fiat 500 del 1957</strong> e la <strong>Fiat 600 del 1955</strong> furono le macchine che motorizzarono l&rsquo;Italia. Costavano poco, consumavano poca benzina, si parcheggiavano ovunque.</li>
+<li><strong>Carosello</strong> (1957–1977) era la trasmissione televisiva della sera con gli spot pubblicitari: cinque minuti di storiella e poi la pubblicità. Tutti la guardavano, anche i bambini.</li>
+<li><strong>In estate le fabbriche chiudevano.</strong> La chiusura di ferragosto nacque nelle grandi industrie come la Fiat. La città vuota ad agosto è un&rsquo;eredità di quegli anni.</li>
+<li><strong>Gli stranieri venivano già in Italia negli anni &lsquo;60</strong> e i tedeschi erano i turisti più numerosi, attratti da sole, mare e prezzi bassi.</li>
+</ol></section>
+<section class="chapter" id="vol1-ch14"><h2>Parole d'epoca</h2><table>
+<thead>
+<tr>
+<th>Parola</th>
+<th>Significato</th>
+<th>Dal libro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>villeggiatura</td>
+<td>vacanza al mare o in montagna</td>
+<td>«Andare in villeggiatura»</td>
+</tr>
+<tr>
+<td>casello</td>
+<td>punto d&rsquo;ingresso dell&rsquo;autostrada, si paga il pedaggio</td>
+<td>«Il casello di Milano»</td>
+</tr>
+<tr>
+<td>pedaggio</td>
+<td>la tassa per usare l&rsquo;autostrada</td>
+<td>«Oreste pagò il pedaggio»</td>
+</tr>
+<tr>
+<td>autogrill</td>
+<td>stazione di servizio con bar e ristorante sull&rsquo;autostrada</td>
+<td>«Il primo autogrill d&rsquo;Italia»</td>
+</tr>
+<tr>
+<td>sdraio</td>
+<td>sedia pieghevole da spiaggia</td>
+<td>«L&rsquo;ombrellone e le sdraio»</td>
+</tr>
+<tr>
+<td>biro</td>
+<td>penna a sfera (dal nome dell&rsquo;inventore Bíró)</td>
+<td>«Marco scrisse con la biro»</td>
+</tr>
+<tr>
+<td>roulotte</td>
+<td>rimorchio abitabile trainato da un&rsquo;auto</td>
+<td>«In tanti viaggiavano in roulotte»</td>
+</tr>
+<tr>
+<td>prefisso</td>
+<td>il codice per telefonare in un&rsquo;altra città</td>
+<td>«Il prefisso di Rimini»</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>manifesto pubblicitario da appendere</td>
+<td>«Il papà comprò un poster della rotonda»</td>
+</tr>
+</tbody>
+</table></section>
+<section class="chapter" id="vol1-ch15"><h2>Linea del tempo</h2><ul>
+<li><strong>1955</strong> — Fiat 600</li>
+<li><strong>1957</strong> — Fiat 500; nasce Carosello</li>
+<li><strong>1958</strong> — Modugno vince il Festival di Sanremo con «Nel blu dipinto di blu»; primo tronco Milano–Parma dell&rsquo;A1 (dicembre)</li>
+<li><strong>1959</strong> — primo Autogrill Pavesi a Fiorenzuola d&rsquo;Arda; 13% degli italiani va in vacanza</li>
+<li><strong>1960</strong> — primo transito Bologna–Firenze (3 dicembre)</li>
+<li><strong>1962</strong> — apertura Roma–Napoli (22 settembre); nascita del Consorzio Costa Smeralda (14 marzo)</li>
+<li><strong>1963</strong> — «Sapore di sale» di Gino Paoli</li>
+<li><strong>1964</strong> — «Una rotonda sul mare» di Fred Bongusto; 21% italiani in vacanza; il 4 ottobre l&rsquo;Autostrada del Sole è completa</li>
+</ul></section>
+<section class="chapter" id="vol1-ch16"><h2>La storia vera dietro la storia</h2><p><em>Per genitori e insegnanti</em></p>
+<p>Il 1964 è l&rsquo;anno in cui l&rsquo;Italia si accorse di essere cambiata. Non fu solo l&rsquo;autostrada: fu la Fiat che produceva un milione di auto all&rsquo;anno; fu la TV in bianco e nero che entrava in tutte le case (1958: una famiglia su dieci; 1965: una su due); fu la migrazione dal Sud al Nord (circa un milione di persone cambiò residenza fra il 1958 e il 1963); fu la prima vacanza di milioni di italiani che non si erano mai spostati per piacere.</p>
+<p>La vacanza non era un fatto privato: era un fatto pubblico di proporzioni nazionali. Le città si svuotavano, le autostrade si riempivano, i giornali contavano le macchine ferme ai caselli come si contano i passeggeri di un volo internazionale.</p>
+<p><strong>Domanda in classe:</strong> <em>«Chi di voi è mai stato al mare? Dove? Quanto ci avete messo ad arrivarci?»</em> Le risposte faranno capire ai bambini che il viaggio non è un fatto naturale: è un fatto storico.</p>
+<p><strong>Approfondimento:</strong> il boom economico italiano (1958–1963, secondo alcuni esteso fino al 1973) trasformò non solo l&rsquo;economia, ma l&rsquo;immaginario. Canzoni d&rsquo;estate, Carosello, le vacanze in auto, i villaggi turistici in Sardegna, i tedeschi a Rimini: ogni pezzo del nostro modo di intendere il viaggio nacque o si cristallizzò in quegli anni.</p>
+<p><strong>Fonti principali:</strong> Università di Torino (E. Locci, «Quando agosto era di tutti»); Istat; Ministero delle Infrastrutture; Archivio RAI. Dossier completo in <code>PROGETTO_SAGA.md</code> §9.</p>
+<hr />
+<p><em>(Fine del Volume 1. Prossimo: Volume 2 — «Tutto compreso!» — estate 1979.)</em></p></section>
+</article>
+<article class="volume" id="vol2" data-vol="vol2">
+  <header class="vol-head">
+    <img class="vol-cover" src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_01_cover.jpg" alt="Copertina Vol. 2 · Tutto compreso!" loading="lazy">
+    <div><h1>Vol. 2 · Tutto compreso!</h1><p class="vol-sub">1979 — Sara, 10 anni · La valigia d'Italia</p></div>
+  </header>
+  <section class="chapter" id="vol2-ch1"><h2>Capitolo 1 — Il concorso di nuoto</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_02_nuoto.jpg" alt="Illustrazione — Capitolo 1 — Il concorso di nuoto" loading="lazy"></figure><p>Sara Morelli aveva dieci anni, le codine nere strette da due nastri gialli e i piedi veloci come quelli di una gazza. Quell&rsquo;estate, al laghetto della polisportiva, aveva vinto il concorso giovanile di nuoto: cinquanta metri stile libero, prima classificata nella sua categoria, con il cronometro del mister che si fermava su numeri che la fecero urlare di gioia prima ancora di vederli.</p>
+<p>Il premio non era la solita coppa di plastica. Era un biglietto colorato, grande come una cartolina, da appendere al frigorifero:</p>
+<p><strong>«VACANZA PER DUE AL VILLAGGIO TURISTICO LA BAIA DEL SOLE, COSTA DEL CILENTO — 7 NIGHT, TUTTO COMPRESO»</strong></p>
+<p>— «Per due», — borbottò Marco, suo papà, leggendo il biglietto con il giornale ancora in mano e tentando invano di piegarlo in quattro senza spiegazzarlo. — Noi siamo in tre. Chi resta a casa?</p>
+<p>— Nessuno resta a casa, — sorrise Piera, sua mamma, che insegnava lettere alle elementari e aveva sempre la soluzione pronta. — Il villaggio fa l&rsquo;offerta famiglie: il premio copre due quote e noi paghiamo solo la differenza per Sara. Ho già telefonato al servizio clienti, mi hanno confermato l&rsquo;iscrizione.</p>
+<p>Marco era ragioniere alla Olivetti, una di quelle persone che fanno i conti anche sul caffè del bar prima di ordinarlo. Squadrò il biglietto, girò le spalle, ripeté a bassa voce:</p>
+<p>— Quindi il premio vale due quote e noi ne paghiamo una su tre. Guadagnamo comunque una settimana di vacanza in premio, anzi di più, perché tutto compreso vuol dire pasti, animazione, spiaggia e attività: niente di extra. — Batté due dita contro la tempia, come faceva sempre quando un calcolo gli riusciva. — Me lo segno sul quaderno delle entrate: «vacanza premio». Questa è la prima voce positiva dell&rsquo;estate.</p>
+<p>Sara incollò il biglietto sul frigo, accanto alla tabellina del sette e alla foto della classe quarta. Quel biglietto faceva un rumore diverso dagli altri fogli attaccati là sopra: sembrava di cartone spesso, odorava di stampa fresca e aveva agli angoli due mezzelune dorate che riflettevano la luce della cucina.</p>
+<p>Suo nonno Oreste, che da giovane aveva fatto le sue prime vacanze in cinquecento da Milano a Rimini, le aveva promesso una cosa sola:</p>
+<p>— Una Morelli al mare, una Morelli in viaggio. Tu tocca a te, quando vinci.</p>
+<p>Sara rilesse il biglietto tre volte prima di andare a dormire. La spiaggia, la piscina, il sole. E laggiù, nel Cilento, c&rsquo;era il mare che nessuno della famiglia aveva mai visto: né suo nonno nel &lsquo;64, né suo papà nel &lsquo;70. Quel mare aspettava lei.</p>
+<p><em>«Concorso di nuoto, 50 metri stile libero. Premio: mare. Non so ancora cosa vuol dire. Ma presto lo saprò.»</em> — scrisse nel diario prima di spegnere la luce.</p>
+<hr /></section>
+<section class="chapter" id="vol2-ch2"><h2>Capitolo 2 — Il pullman del villaggio</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_03_pullman.jpg" alt="Illustrazione — Capitolo 2 — Il pullman del villaggio" loading="lazy"></figure><p>La Baia del Sole non era proprio dietro casa. Milano → Firenze → Roma → giù per la Tirrenica, fino a Palinuro, era un viaggio di sei ore e passa. Oreste e Lina, i nonni, vennero a salutarli davanti alla Cinquecento — che nel 1979 era vecchia ma ancora orgogliosa, con i cerchioni nuovi di zecca e il cruscotto che profumava di eternit e brillantini. Il nonno Oreste strinse la mano a Sara e le mise nella tasca della giacca un confetto all&rsquo;amarena.</p>
+<p>— Ti porto io il portafortuna? No, — si corresse, — te lo metto in tasca. C&rsquo;è chi viaggia con la valigia e chi viaggia con il cuore pieno. Tu hai entrambi.</p>
+<p>Così andarono con il pullman del villaggio: un Gran Turismo giallo e arancione, con la scritta <strong>LA BAIA DEL SOLE</strong> in grassetto e la promessa «TUTTO COMPRESO» sotto. Partirono alle sette di mattina da Piazza della Repubblica, carichi di borse di paglia, zainetti, una valigia di cartone legata con lo spago, un pallone sgonfio e la <strong>valigia di cuoio</strong> di Marco — la stessa del 1964, con dentro ancora il biglietto del pedaggio di suo padre Oreste, Milano–Rimini, e un piccolo spazio vuoto per il ricordo nuovo.</p>
+<p>Sul pullman c&rsquo;erano trenta bambini che urlavano, le nonne che pettinavano i pargoletti, un gruppo di amici rumeni che cantava a bocca aperta, il signor Silvio che leggeva il giornale con la sigaretta spenta tra le dita, e l&rsquo;animatore Vito che raccontava barzellette al microfono con la voce che rimbombava tra i sedili.</p>
+<p>— Bambini, — disse la voce del microfono, — buongiorno. Io mi chiamo Vito e sarò la vostra guida, il vostro mago e il vostro compagno di merende per sette giorni. Prima regola: chi canta a voce alta vince il premio «voce più bella del pullman».</p>
+<p>Fino a mezzogiorno cantarono tutti. Poi qualcuno si addormentò sul sedile, qualcun altro chiese «quando arriviamo» dieci volte, e il pullman entrò nell&rsquo;Appennino tra i tornanti pieni di cipressi.</p>
+<p>Sara trovò un sedile vicino al finestrino e incollò il naso al vetro. Il viaggio passava dalla Toscana dei cipressi, dai castelli del Lazio, dalla Campania dei pini sul mare. Vide l&rsquo;Autostrada del Sole, la famosa A1 di cui suo nonno le aveva parlato tante volte: ora era tutta finita, correva dritta come un filo d&rsquo;acciaio da Nord a Sud, e sotto di lei le corsie si stendevano come un tappeto grigio.</p>
+<p>— Nonna, — chiese Sara — ma perché prima la gente non ci andava affatto al mare?</p>
+<p>— Perché prima non ci andava nessuno, — rispose la nonna. — Una volta si restava al paese: le ferie erano ferie di campagna, di cortili, di nonne. Ora anche le famiglie dei ferrovieri e degli operai vanno al mare, grazie a questi villaggi che fanno prezzi per tutti.</p>
+<p>Sara guardava fuori. L&rsquo;Italia sembrava sempre più vicina, sempre più sua.</p>
+<p><em>«Ho visto tre regioni attaccate una all&rsquo;altra, e tutte quante avevano il mare alla fine. È come se l&rsquo;Italia fosse una cartolina lunga lunga.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch3"><h2>Capitolo 3 — La reception e i bracciali colorati</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_04_reception.jpg" alt="Illustrazione — Capitolo 3 — La reception e i bracciali colorati" loading="lazy"></figure><p>Arrivarono a Baia del Sole nel primo pomeriggio. Il villaggio era un tappeto di mattoni bianchi e tetti rossi: blocchi di appartamenti color rosa antico, la piscina a forma di mezzaluna, il campo da tennis, il ristorante con i tavoli tondi e la fontana, la discoteca, il mini-club, il bar, la spiaggia privata chiusa da due pilastri bianchi con i tavolini di vimini. Al centro, su un piedistallo, troneggiava il totem del villaggio: un sole sorridente con gli occhiali da sole a specchio.</p>
+<p>Alla reception — un capannone aperto su due lati, con l&rsquo;aria fresca del ventilatore e il profumo di sapone da lavanderia industriale — la Signora Gemma consegnò a Sara un <strong>braccialetto di plastica colorata</strong> gialla.</p>
+<p>— Questo è il tuo lasciapassare, — disse la signora, con la penna che già le penzolava tra le dita per i nuovi bracciali. — Con questo fai tutto: pasti, mini-club, piscina, animazione, gelati. Non si paga mai niente, mai, in tutta la settimana. Solo tienilo al polso e non perderlo.</p>
+<p>— E se lo perdo?</p>
+<p>— Te ne facciamo un altro, — disse la signora senza alzare gli occhi, — ma col rimprovero!</p>
+<p>Marco sollevò gli occhi al cielo, ma sorrise dentro. Piera sistemò le valigie in una camera col letto a castello e la finestra che guardava la piscina. Sara esplorava già il giro.</p>
+<p>— Allora è vero, — disse Sara tornando dalla corsa esplorativa, con le scarpe ancora umide. — Tutto compreso.</p>
+<p>— Fin che il villaggio regge il ritmo, — disse il papà. — Prima o poi qualcuno dovrà pagarlo, tutto questo.</p>
+<p>Sara non capì cosa intendesse, ma lo scrisse nel diario sottolineandolo due volte:</p>
+<p><em>«Un giorno un papà paga per tutti. O forse lo paga il postino, o il ragioniere, o nessuno lo sa bene. Non si sa mai chi paga la vacanza. Però è bella.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch4"><h2>Capitolo 4 — Il mini-club e l'animatore Vito</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_05_miniclub.jpg" alt="Illustrazione — Capitolo 4 — Il mini-club e l'animatore Vito" loading="lazy"></figure><p>Il mini-club di Baia del Sole era una stanza con le pareti tappezzate di disegni e una lavagna dove Vito scriveva il programma della settimana con il gessetto colorato:</p>
+<p><em>Lu–Gio: giochi in piscina e laboratori creativi · Ven: spettacolo di balli · Sab: pesca con gli animatori · Dom: gara di castelli di sabbia.</em></p>
+<p>L&rsquo;animatore <strong>Vito</strong> era un ragazzo alto, magro, con la voce profonda che arrivava fino al campo da tennis e le mani che sembravano fungere da marionette. Cantava senza mai stonare, faceva sparire le monete da dietro gli orecchi e contava i bambini prima dei pasti come contasse i gradini di una torre.</p>
+<p>Il primissimo giorno organizzò il <strong>gran ballo di benvenuto</strong>. Dieci bambini tedeschi, otto francesi, una famiglia polacca, due gemelli spagnoli e i Morelli italiani ballarono insieme in cerchio sulla pista del ristorante, senza capirsi a parole ma ridendo in tutte le lingue. Vito mise una canzone di Raffaella Carrà e tutti quanti si misero in fila per il ballo della gina.</p>
+<p>— Arrivederci l&rsquo;anno prossimo! — gridò Vito ai villeggianti settimanali che partivano con le valigie.</p>
+<p>Sara pensò che quel posto era una famiglia enorme, con una sola regola scritta da nessuna parte ma rispettata da tutti: nessuno può annoiarsi.</p>
+<p><em>«Vito è diverso dagli insegnanti. Vito non interroga: improvvisa. Forse un giorno farò l&rsquo;animatrice anch&rsquo;io. Forse no. Ma intanto ballo.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch5"><h2>Capitolo 5 — Il walkman</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_06_walkman.jpg" alt="Illustrazione — Capitolo 5 — Il walkman" loading="lazy"></figure><p>A metà settimana, sulla terrazza del bar, un gruppo di ragazzi più grandi aveva in mano un oggetto nuovissimo: il <strong>walkman</strong>. Era un rettangolo grigio con due cuffiette arancioni e faceva girare una cassetta senza romperla. Lo aveva inventato la <strong>Sony</strong> in Giappone, proprio quell&rsquo;anno — il <strong>Sony TPS-L2</strong>, il primo al mondo. Un ragazzo chiamato Enrico, quattordici anni, capelli lunghi e maglietta dei Pink Floyd, aveva registrato dentro varie canzoni dal disco preferito del padre.</p>
+<p>— Posso provare? — chiese Sara, incapace di togliersi gli occhi di dosso.</p>
+<p>— Solo con le cuffie piccole, — disse Enrico, solenne. — Il suono è privato, come un sogno. Chi le veste sente solo quello che vuole sentire.</p>
+<p>Sara si infilò le cuffiette e sentì la musica in un modo che non aveva mai provato: le chitarre arrivavano dritte nelle orecchie, senza passare dall&rsquo;aria, come se il cantante le stesse cantando dentro il cranio. Le note rimbalzavano tra le tempie e non chiedevano il permesso a nessuno. Capì che quella cosa avrebbe cambiato il mondo — e che nessuno ancora sapeva quanto.</p>
+<p>— Ma la gente parlerà ancora? — chiese, restituendolo.</p>
+<p>Enrico rise, chiudendo il walkman con un click secco.</p>
+<p>— Io parlerò poco. La musica è più forte.</p>
+<p>Sara tornò in camera lentamente, come in trance. Si sedette sul letto e pensò che il mondo era pieno di cose che esistevano da sempre — la piscina, il mare, il sole — e di cose che esistevano da un giorno solo e cambiavano tutto lo stesso.</p>
+<hr /></section>
+<section class="chapter" id="vol2-ch6"><h2>Capitolo 6 — La crisi del petrolio</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_07_petrolio.jpg" alt="Illustrazione — Capitolo 6 — La crisi del petrolio" loading="lazy"></figure><p>Una sera, al ristorante, il papà sfogliava il giornale e si fermò su un articolo con una foto in bianco e nero: una fila lunghissima di automobili davanti a una pompa di benzina, nel bel mezzo di Milano.</p>
+<p>— Lo sentite? — disse il papà indicando la foto. — Il petrolio costa sempre di più, e la benzina è aumentata di nuovo. Per questo gli italiani vanno di più in Italia e meno all&rsquo;estero. E per questo i villaggi «tutto compreso» funzionano: la benzina si consuma una volta sola per tutto il viaggio, poi si sta fermi una settimana, e tutto il resto è già dentro il prezzo.</p>
+<p>— E prima? — chiese Sara.</p>
+<p>— Prima, anni fa, c&rsquo;era stato un altro scossone, nel 1973, quando i Paesi arabi avevano tagliato il petrolio al mondo occidentale. Le domeniche senza auto, le code al distributore per chilometri, la benzina razionata. Anche allora la gente capì una cosa importante: il petrolio non è infinito, e chi controlla l&rsquo;energia controlla l&rsquo;economia di tutti.</p>
+<p>Il papà era un ragioniere che amava i numeri e li spiegava come raccontava le barzellette, una alla volta, con la pausa giusta prima della battuta. Sara capì che la vacanza non era un capriccio dei grandi: era una conseguenza della storia del mondo intero, dei prezzi della benzina e delle decisioni prese in Paesi dall&rsquo;altra parte del mare.</p>
+<p><em>«Se il petrolio costa caro, andare al villaggio è un risparmio. Se il petrolio costa poco, forse si va a Parigi. Il mondo è fatto di prezzi, e i prezzi decidono dove vanno i bambini in vacanza.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch7"><h2>Capitolo 7 — Palinuro fuori dal villaggio</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_08_palinuro.jpg" alt="Illustrazione — Capitolo 7 — Palinuro fuori dal villaggio" loading="lazy"></figure><p>Giovedì mattina tutta la famiglia noleggiò tre biciclette gialle con i cestini e uscì dal cancello del villaggio, verso <strong>Palinuro</strong>.</p>
+<p>Il villaggio finiva al cancello bianco col totem; oltre, l&rsquo;Italia era un&rsquo;altra Italia: case imbiancate a calce, la chiesa di pietra col campanile basso, le nonne sedute sulle soglie che conversavano piano, la stazione dei pescatori con le barche rovesciate e le reti stese al sole come panni verdi.</p>
+<p>Lungo il mare c&rsquo;era la <strong>Punta di Palinuro</strong>, un promontorio di roccia a picco sull&rsquo;acqua, scavato da millenni di onde. Sara vide le grotte, coi loro nomi strani (perla, turchese, monaca, zampa di cavallo), i pescatori che rattoppavano le reti con le mani veloci come tessitrici, due ragazzini che pescavano con la lenza da una barca di legno col fondo piatto.</p>
+<p>— Qui non ci sono braccialetti, — disse Sara, guardando il polso.</p>
+<p>— No, — disse la mamma. — Qui si paga quello che si compra al mercato. Ma non si compra il mare: il mare è gratis, e così le grotte, e così il vento.</p>
+<p>Sara comprò un pezzo di pane caldo dal fornaio della piazza, lo sbucciò con le mani ancora salate di mare e lo mangiò seduta su una roccia calda, guardando i pescherecci all&rsquo;orizzonte. Per la prima volta capì che la vacanza non era solo il villaggio: la vacanza era anche il Cilento, le persone vere, i loro nomi, le loro reti.</p>
+<p><em>«Nel villaggio c&rsquo;è tutto compreso. Nel paese invece c&rsquo;è tutto vero. Non so ancora quale mi piace di più. Forse mi piacciono tutti e due, come il sale e lo zucchero.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch8"><h2>Capitolo 8 — Paestum</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_09_paestum.jpg" alt="Illustrazione — Capitolo 8 — Paestum" loading="lazy"></figure><p>Venerdì, gita del villaggio: <strong>Paestum</strong>, i templi greci, con il pullman a due piani e la guida — una professoressa di storia dell&rsquo;arte coi capelli ricci, gli occhiali da miope e la voce lenta che faceva venire voglio di dormire e poi spalancare gli occhi.</p>
+<p>Arrivarono nel prato davanti al Tempio di Nettuno quando il sole era già alto. Davanti ai templi, Sara si sentì piccola e gigante allo stesso tempo: i capitelli svettavano come montagne e le colonne erano più spesse dei tronchi di cento alberi messi in fila.</p>
+<p>— Questi templi hanno quasi duemilacinquecento anni, — raccontò la guida. — Sono vecchi più del doppio di Roma. Qui, prima ancora che esistesse l&rsquo;Italia, c&rsquo;erano i greci. Poi arrivarono i romani, che ci portarono le strade, gli acquedotti, le leggi e il latino. I viaggiatori di allora andavano per mare, col vento, e portavano i panini avvolti nelle foglie di vite e nelle canestre di vimini.</p>
+<p>Sara fotografò i templi con la Kodak del papà, dosando le pose: una dall&rsquo;esterno, una col papà davanti alle colonne, una col mazzo di papaveri in primo piano che il fiore bambino le aveva appena indicato sussurrando. Pensò che il Turismo — con la <strong>T</strong> maiuscola — non fosse un&rsquo;invenzione del villaggio né della pubblicità della televisione: erano gli uomini, da sempre, a viaggiare per conoscere.</p>
+<p><em>«2500 anni fa i greci andavano al mare anche loro. Adesso tocca a me. Forse il mare è l&rsquo;unica parola che non cambia mai significato.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch9"><h2>Capitolo 9 — La spiaggia dei pescatori</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_10_pescatori.jpg" alt="Illustrazione — Capitolo 9 — La spiaggia dei pescatori" loading="lazy"></figure><p>Sabato, tornando dalla spiaggia, Sara vide un cartello improvvisato appoggiato su un masso grigio davanti al parcheggio dei pescherecci:</p>
+<p><strong>«LA BAIA DEL SOLE VUOLE COMPRARE QUESTA SPIAGGIA. I PESCATORI NON CI STANNO. FIRMA ANCHE TU.»</strong></p>
+<p>Sotto, una lista di nomi scritti a penna blu, tra cui alcuni pescatori che Sara aveva visto rattoppare le reti la mattina del giro in bici. In cima, un numero di telefono e la scritta «per informazioni».</p>
+<p>La mamma le spiegò la situazione: il villaggio voleva allargare la spiaggia di Baia del Sole comprando la cala dei pescatori, per avere più posto per i turisti e i lidi. Ma quella spiaggia non era un terreno qualsiasi: lì tiravano le reti da generazioni, lì nascevano i figli dei pescatori, lì c&rsquo;era la memoria delle famiglie che il Cilento lo abitavano da sempre.</p>
+<p>Sara raccolse un sasso piatto che l&rsquo;onda aveva appena lucidato, lo rigirò tra le mani, sentì che era caldo dal sole. Poi lo mise nello zaino, accanto al diario.</p>
+<p><em>«Il villaggio è bello, ma se mangia la spiaggia dei pescatori, non è più bello. Una cosa bella che mangia un&rsquo;altra cosa bella smette di essere bella. Non lo sapevo prima di oggi.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch10"><h2>Capitolo 10 — La festa del villaggio e la serenata</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_11_festa.jpg" alt="Illustrazione — Capitolo 10 — La festa del villaggio e la serenata" loading="lazy"></figure><p>Sabato sera c&rsquo;era la <strong>festa annuale del villaggio</strong>: fuochi d&rsquo;artificio, una serenata sotto il totem del sole, il gruppo folkloristico del Cilento con le chitarre e i tamburelli, e uova di cioccolato gigante per i bambini — tre chili di cioccolato al latte con dentro un giocattolo giallo.</p>
+<p>Sara portava ancora il sasso in tasca, e ogni tanto ci toccava il palmo della mano. All&rsquo;improvviso sentì il braccio di Vito, l&rsquo;animatore, posarsi sulla sua spalla.</p>
+<p>— Sara bambina, — disse piano, avvicinandosi, — hai visto il cartello?</p>
+<p>Sara annuì, pronta a difendere i pescatori con tutto il fiato che aveva in corpo.</p>
+<p>— Lo so, — continuò Vito, abbassando la voce sotto la musica del gruppo. — Io vengo da lì: mio padre è uno dei pescatori, quello con la barba e il berretto blu. Il villaggio vuole portare lavoro e soldi, e noi non vogliamo morire di fame, ma non possiamo perdere la spiaggia: è l&rsquo;unica cosa che ci resta del paese dei nostri nonni. Domani, dopo la festa, faremo un&rsquo;assemblea aperta a tutti — pescatori, villaggio, sindaco, turisti. Chi vuole venire, viene.</p>
+<p>Sara lo guardò: Vito non era solo un animatore che raccontava barzellette e faceva le marionette. Era anche il figlio di un pescatore, con un padre che riparava le reti e una storia che veniva da molto lontano.</p>
+<p>Quella sera, sotto le stelle, mentre i mortaretti esplodevano sopra il totem e i bambini urlavano in coro «ancora, ancora», Sara capì una cosa: i bambini non devono scegliere da che parte stare. Devono solo chiedere le cose giuste — quelle che valgono per tutti, non solo per chi ha il braccialetto al polso.</p>
+<p><em>«Chiedere le cose giuste. Non lo sapevo che fosse questo, il mio compito di bambina. Ma adesso lo so.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch11"><h2>Capitolo 11 — Il compromesso</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-2-tutto-compreso/assets/illus_12_assemblea.jpg" alt="Illustrazione — Capitolo 11 — Il compromesso" loading="lazy"></figure><p>Domenica mattina, sotto il totem del sole ancora umido di rugiada, si tenne l&rsquo;assemblea informale. C&rsquo;erano i pescatori con le loro camicie di jeans stirate, i responsabili del villaggio in polo azzurre, il sindaco di Palinuro con la fascia tricolore e trenta turisti curiosi che si erano svegliati presto per vedere come andava a finire.</p>
+<p>Dopo due ore di lamentele e di ragioni — i pescatori che rivendicavano la spiaggia, il villaggio che rivendicava gli investimenti, il sindaco che chiedeva calma a tutti — Marco, ragioniere, si alzò e suggerì:</p>
+<p>— Il villaggio può usare la spiaggia per qualche ora al mattino, con un accordo scritto e registrato; la sera e la mattina presto la spiaggia torna ai pescatori, che possono tirare le reti e vendere il pesce al mercatino. E una parte del ricavato di quei lidi va alle loro famiglie, ogni anno, come canone per l&rsquo;uso.</p>
+<p>Ci fu un silenzio. Poi la gente applaudì. Il sindaco disse che l&rsquo;accordo era buono e sarebbe stato messo per iscritto e firmato da entrambe le parti entro la fine del mese. I pescatori si strinsero la mano tra loro e con i responsabili del villaggio; qualcuno tirò fuori un sigaro, qualcuno un fazzoletto per asciugarsi la fronte.</p>
+<p>Salvatore, un pescatore calvo con gli occhiali spessi e le mani segnate dalle reti, si avvicinò a Sara e le mise in mano un piccolo barattolo di vetro pieno di sabbia dorata.</p>
+<p>— Tienila, bimba. Ricorda: la spiaggia non è di nessuno, se la rispettiamo. È di tutti. E chi la rispetta non la compra: la custodisce.</p>
+<p>Marco si chinò verso di lei e sussurrò:</p>
+<p>— Hai fatto una cosa bella, stando zitta e ascoltando. La valigia di cuoio peserà di meno, quando la porteremo a casa.</p>
+<p><em>«Ho capito una cosa: i grandi votano e firmano. Ma è bello quando anche una bambina può essere nella stanza in cui si decide. La prossima volta, forse, alzerò la mano anch&rsquo;io.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol2-ch12"><h2>Capitolo 12 — La cartolina numero due</h2><p>Sul pullman del ritorno, mentre l&rsquo;Appennino tornava a scorrere dal finestrino in direzione opposta, Sara scrisse la sua cartolina: una fotografia ufficiale di Baia del Sole con il sole sorridente, la piscina turchese e il totem, comprata al negozio di souvenir per <strong>trecento lire</strong>. La scrisse al nonno Oreste:</p>
+<p><em>«Caro nonno,</em>
+<em>sono stata al mare, al villaggio &ldquo;tutto compreso&rdquo;. Ho ballato, ho nuotato, ho visto i templi di Paestum, ho ascoltato il walkman, e ho aiutato a firmare un compromesso per la spiaggia dei pescatori. La sabbietta che mi ha regalato Salvatore ora è nella valigia accanto al diario, e il diario c&rsquo;è rimasto tutta la settimana. Grazie anche per i racconti della tua Cinquecento e per il pedaggio del 1964 che è ancora lì.</em>
+<em>Domani aprirò la valigia di cuoio e aggiungerò la mia cartolina alla tua del 1964. La valigia ora ha due cartoline, e un giorno forse ne avrà tre, o quattro, o chissà quante.</em>
+<em>Abbracci dalla tua nipotina in viaggio,</em>
+<em>Sara»</em></p>
+<p>Vicino a Milano, aprendo la valigia per rimettere a posto le cose, Sara trovò il vecchio biglietto del pedaggio del 1964: poche lire di pedaggio e, scritto a penna dalla mano del nonno: «Autogrill di Fiorenzuola — caffè e paste — 1964». Accanto, mise la sua cartolina e il barattolo di sabbia. Guardando l&rsquo;Italia scorrere dal finestrino verso la nebbia della bassa, Sara sorrise.</p>
+<p><em>«La valigia più bella è quella che porta le storie, non le scarpe.»</em></p>
+<p>E quando il pullman rallentò per entrare a Milano, lei capì che l&rsquo;estate era finita solo sulla carta. Perché quello che si porta dentro — la sabbia, il sole, le voci — non si può mettere nel bagagliaio: resta. E resta per sempre.</p>
+<hr />
+<h1>Apparati</h1></section>
+<section class="chapter" id="vol2-ch13"><h2>Lo sai che…?</h2><ol>
+<li><strong>Il turismo di massa in Italia nacque negli anni &lsquo;60.</strong> Nel 1959 solo il 13% degli italiani andava in vacanza; negli anni &lsquo;80 erano circa il 43%. L&rsquo;Autostrada del Sole, inaugurata nel 1964, fu la spina dorsale di questa trasformazione.</li>
+<li><strong>I villaggi tutto compreso</strong> si diffusero in Italia negli anni &lsquo;60 e &lsquo;70: l&rsquo;esempio più famoso fu il Club Med, nato in Francia nel 1950 da Gérard Blitz e arrivato in Italia a Cefalù nel 1957; in Italia, il modello fu replicato da Valtur (1964) e da molti altri operatori.</li>
+<li><strong>L&rsquo;agriturismo non esisteva ancora nel 1979</strong>: la prima legge italiana sull&rsquo;agriturismo è del 1985 (Legge 730, «Disciplina dell&rsquo;attività di agriturismo»). Questa storia è un ponte verso il prossimo volume.</li>
+<li><strong>Il walkman</strong> fu lanciato dalla Sony nel 1979 (Sony TPS-L2) ed è considerato l&rsquo;inizio della musica portatile. Il nome «walkman» nacque in Giappone e fu la prima volta che un prodotto vendeva uno stile di vita, non solo un apparecchio.</li>
+<li><strong>Carosello</strong>, la trasmissione della sera con gli spot pubblicitari, finì nel 1977, due anni prima dei fatti narrati. La televisione già allora cambiava i nostri desideri.</li>
+<li><strong>La crisi del petrolio</strong> del 1973 e quella del 1979 resero tutto più caro — anche il carburante, anche le vacanze. Anche per questo gli italiani iniziarono a viaggiare di più in Italia, scegliendo soluzioni organizzate come i villaggi.</li>
+</ol></section>
+<section class="chapter" id="vol2-ch14"><h2>Parole d'epoca</h2><table>
+<thead>
+<tr>
+<th>Parola</th>
+<th>Significato</th>
+<th>Dal libro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>villaggio turistico</td>
+<td>struttura ricettiva con servizi completi</td>
+<td>«La Baia del Sole è un villaggio»</td>
+</tr>
+<tr>
+<td>tutto compreso</td>
+<td>formula che include pasti, animazione, spiaggia</td>
+<td>«Tutto compreso!»</td>
+</tr>
+<tr>
+<td>animatore</td>
+<td>chi organizza giochi e feste per gli ospiti</td>
+<td>«Vito è l&rsquo;animatore»</td>
+</tr>
+<tr>
+<td>walkman</td>
+<td>lettore di cassette portatile</td>
+<td>«Sara ha provato il walkman»</td>
+</tr>
+<tr>
+<td>braccialetto</td>
+<td>identificativo dell&rsquo;ospite del villaggio</td>
+<td>«Il braccialetto colorato»</td>
+</tr>
+<tr>
+<td>Carosello</td>
+<td>trasmissione TV con gli spot pubblicitari, 1957–1977</td>
+<td>«Carosello è finito nel 1977»</td>
+</tr>
+<tr>
+<td>templi greci</td>
+<td>templi dell&rsquo;antica Magna Grecia</td>
+<td>«Paestum»</td>
+</tr>
+<tr>
+<td>Gran Turismo</td>
+<td>pullman turistico grande e comodo</td>
+<td>«Partirono con il Gran Turismo»</td>
+</tr>
+<tr>
+<td>cala</td>
+<td>piccola baia tra rocce</td>
+<td>«la cala dei pescatori»</td>
+</tr>
+<tr>
+<td>assemblea</td>
+<td>riunione pubblica per discutere un problema comune</td>
+<td>«l&rsquo;assemblea di Baia del Sole»</td>
+</tr>
+</tbody>
+</table></section>
+<section class="chapter" id="vol2-ch15"><h2>Linea del tempo</h2><ul>
+<li><strong>1950</strong> — Gérard Blitz fonda il Club Med</li>
+<li><strong>1957</strong> — primo Club Med in Italia, a Cefalù; Fiat 500</li>
+<li><strong>1964</strong> — Valtur apre i primi villaggi italiani; Autostrada del Sole completa</li>
+<li><strong>1967</strong> — primo mini-club Club Med (Donoratico)</li>
+<li><strong>1973</strong> — prima crisi petrolifera; domeniche senza auto</li>
+<li><strong>1977</strong> — Carosello finisce; via al cinema TV libero</li>
+<li><strong>1979</strong> — seconda crisi petrolifera; la Sony lancia il walkman</li>
+</ul></section>
+<section class="chapter" id="vol2-ch16"><h2>La storia vera dietro la storia</h2><p><em>Per genitori e insegnanti</em></p>
+<p>Il 1979 fu un anno di passaggio. Il mondo usciva dalla seconda crisi petrolifera, e l&rsquo;Italia scopriva un nuovo modo di viaggiare: il villaggio tutto compreso. Non era solo un luogo dove andare al mare: era un piccolo mondo con le sue regole, i suoi riti e i suoi sogni, dove operai e impiegati potevano permettersi una settimana di vacanza senza pensieri. I villaggi portavano cemento, lavoro e denaro in territori fragili — e insieme nuove domande su chi avesse diritto a quella costa, e a quella spiaggia.</p>
+<p>In quegli stessi anni nasceva però anche una sensibilità diversa: il riconoscimento del valore dei territori e delle comunità. La legge sull&rsquo;agriturismo arrivò solo nel 1985 (Legge 730). La Convenzione di Aarhus sul diritto dei cittadini all&rsquo;informazione ambientale era ancora lontana (1998), ma le assemblee di paese — come quella di Baia del Sole — erano già allora un esercizio di democrazia partecipata.</p>
+<p><strong>Domanda in classe:</strong> <em>«È giusto che un villaggio compri la spiaggia dei pescatori? Cosa dovrebbero fare le persone che ci abitano? Chi decide che cosa è da comprare e che cosa è da custodire?»</em></p>
+<p><strong>Fonti:</strong> Università di Torino (E. Locci); Istat; Club Med; Valtur; Sony. Dossier completo in <code>PROGETTO_SAGA.md</code> §9.</p></section>
+</article>
+<article class="volume" id="vol3" data-vol="vol3">
+  <header class="vol-head">
+    <img class="vol-cover" src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_01_cover.jpg" alt="Copertina Vol. 3 · Agriturismo e Giubileo" loading="lazy">
+    <div><h1>Vol. 3 · Agriturismo e Giubileo</h1><p class="vol-sub">2000 — Niccolò, 10 anni · La valigia d'Italia</p></div>
+  </header>
+  <section class="chapter" id="vol3-ch1"><h2>Capitolo 1 — La busta con le foto nuove</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_02_busta.jpg" alt="Illustrazione — Capitolo 1 — La busta con le foto nuove" loading="lazy"></figure><p>Niccolò trovò la busta appoggiata sopra il tavolo della cucina, tra la moka e il portasale, proprio nel punto in cui la mamma metteva sempre le notizie importanti. Dentro c&rsquo;era una cartolina con la foto di una collina: cipressi, una strada bianca, una casa in pietra col tetto di tegole e un cartello di legno intagliato a mano: <strong>AGRITURISMO LA QUERCIA — MUGELLO</strong>.</p>
+<p>— Che cos&rsquo;è un agriturismo? — chiese Niccolò, che stava finendo i compiti delle vacanze con la penna che scivolava sul quaderno a righe.</p>
+<p>La mamma — <strong>Sara</strong>, sua mamma, la stessa Sara delle vacanze al mare del &lsquo;79 — sorrise con l&rsquo;espressione di chi sta per raccontare una storia che aspetta da vent&rsquo;anni di essere raccontata.</p>
+<p>— Tuo nonno Oreste, quando era bambino, andava al mare. Tuo nonno Marco, da ragazzo, andava al villaggio turistico. Noi invece, quest&rsquo;anno, andiamo in <strong>agriturismo</strong>: un contadino che ha un&rsquo;azienda agricola apre la sua casa ai turisti, e dà loro da mangiare e dormire, con le cose che produce lui: pane, ricotta, olio, salumi, vino e uova fresche la mattina.</p>
+<p>— E le mucche?</p>
+<p>— Ci sono le mucche, — disse il papà Luca, alzando la testa dal computer. — Ci sono le galline, l&rsquo;orto, il forno a legna, il cane, e il gatto che si fa accarezzare solo dai bambini.</p>
+<p>— E il nonno?</p>
+<p>— Il nonno viene con noi, — disse la mamma. — Soprattutto il nonno.</p>
+<p>Niccolò immaginò un posto dove le mucche non sono chiuse in una stalla ma pascolano nei campi, e dove la gente mangia pane appena sfornato con la marmellata di fichi. Era un tipo di vacanza che non esisteva nei suoi libri di geografia, ma che — l&rsquo;avrebbe scoperto presto — esisteva in Italia da quindici anni, dal 1985, grazie a una legge.</p>
+<p><em>«Un agriturismo è come una casa di vacanza dove il cibo viene dalla fattoria e i letti sono in vera fattoria. Non ho mai mangiato una roba così. Presto saprò com&rsquo;è fatta.»</em> — scrisse nel diario.</p>
+<hr /></section>
+<section class="chapter" id="vol3-ch2"><h2>Capitolo 2 — La mucca Stella e il giro in aia</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_03_stella.jpg" alt="Illustrazione — Capitolo 2 — La mucca Stella e il giro in aia" loading="lazy"></figure><p>Appena arrivati a La Quercia, la padrona di casa — <strong>Signora Pierina</strong>, settant&rsquo;anni buoni e un grembiule a fiori — li accolse col pane caldo ancora avvolto nel canovaccio e la ricotta fresca ancora tiepida del cestino.</p>
+<p>— Benvenuti alla Quercia! Qui le cose si fanno per bene: se volete spendere i soldi come fossero vostri, avete fatto male a scegliere un agriturismo; se volete capire come funziona la campagna, avete fatto benissimo.</p>
+<p>Niccolò, che di solito stava incollato alla sedia col viso sullo schermo, si trovò in aia davanti a una mucca enorme, bruna e bianca, con le orecchie grandi come ventagli e gli occhi lucidi come biglie nere.</p>
+<p>— Quella è <strong>Stella</strong>, — spiegò Pierina. — Sta lì da quando è nata. Quando vuole farsi bella va al laghetto e si lascia accarezzare; quando vuole latte ve lo dà, poi se ne lascia un po&rsquo; per il vitello. È la nostra mucca più vecchia e la nostra più dolce.</p>
+<p>— E tu cosa fai, — chiese Niccolò — oltre le mucche?</p>
+<p>— Io cucino — disse Pierina — e l&rsquo;azienda fa olio e vino. Tuo nonno ti spiegherà meglio dopo pranzo: lui le macchine agricole le conosce tutte, una a una, col nome e il battesimo.</p>
+<p>Il nonno Oreste, intanto, guardava tutto con gli occhi di uno che sta facendo i conti — non di soldi, ma di confronti: quanto era diversa la campagna del 2000 da quella che lui aveva visto da ragazzo nel &lsquo;64, quando conosceva i contadini uno a uno e le strade bianche erano l&rsquo;unico modo per arrivare.</p>
+<p>Niccolò lo sapeva bene: suo nonno era uno che diceva «una volta» a ogni frase, ma mai per vantarsi — lo diceva solo per spiegare che c&rsquo;è un prima e c&rsquo;è un dopo. E che il dopo non è sempre meglio del prima, ma quasi mai è peggio.</p>
+<p><em>«Stella ha gli occhi grandi e lucidi. Non mi giudica per come sono vestito. Le mucche sono molto brave, a non giudicare.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch3"><h2>Capitolo 3 — Il forno a legna e la ricotta</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_04_forno.jpg" alt="Illustrazione — Capitolo 3 — Il forno a legna e la ricotta" loading="lazy"></figure><p>La mattina presto, appena il sole spuntava dietro i colli del Mugello, Pierina accese il forno a legna dietro la casa. Niccolò si alzò prestissimo per aiutarla: voleva vedere come nasceva il pane. Il fuoco crepitava, l&rsquo;aria profumava di robinia e di farina; fuori, i grilli tacevano per lasciare posto al canto del forno.</p>
+<p>Quando il pane fu cotto, dorato e gonfio come un sole piccolo, Pierina lo ruppe a metà e lo diede a Niccolò.</p>
+<p>— Tieni, — disse. — È il pane vero.</p>
+<p>Niccolò lo mangiò scottandosi la lingua, ma non smise di masticare. Era diverso dal pane del supermercato: profumava di qualcosa che non sapeva nominare. Forse di legno, forse di campagna, forse di tempo.</p>
+<p>Dopo pranzo assistette alla produzione della ricotta: il latte appena munto ancora tiepido, la pentola di rame, il mestolo di legno, il sale grosso, il cestino di vimini. Pierina spiegò che il formaggio si fa con la pazienza, non con la forza — e che il formaggio che va di fretta viene male, come tutte le cose fatte di fretta.</p>
+<p>— E chi paga l&rsquo;agriturismo? — chiese Niccolò, che era curioso coi numeri.</p>
+<p>— Lo paghi tu, — rispose Pierina — e io col tuo denaro pago le galline, il fieno, le tasse e un po&rsquo; di pensione. Prima della legge, i contadini incassavano poco e facevano tanta fatica; con l&rsquo;agriturismo le famiglie dei contadini hanno un modo per restare in campagna invece di andare in fabbrica o in città. La campagna, se non viene custodita, muore.</p>
+<p>Il nonno Oreste annuì, lento.</p>
+<p>— Deve essere stata una legge proprio importante, — disse, — perché nessun contadino prima poteva ospitare come si deve. Solo i casolari privati lo facevano abusivamente, con la multa dietro l&rsquo;angolo.</p>
+<p><em>«Il pane caldo brucia la lingua ma vale la pena. Come le verità: bruciano e fanno bene lo stesso.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch4"><h2>Capitolo 4 — Il nonno Oreste racconta</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_05_nonno.jpg" alt="Illustrazione — Capitolo 4 — Il nonno Oreste racconta" loading="lazy"></figure><p>La sera, dopo cena, sotto il portico illuminato da due lanterne di ferro battuto, il nonno raccontò come aveva cominciato a viaggiare lui.</p>
+<p>— Io avevo dieci anni, come te. Era l&rsquo;estate del <strong>1964</strong>, e noi andammo a Rimini in Fiat 500, con tuo nonno Marco che aveva la tua età. Partimmo da Milano presto presto. L&rsquo;Autostrada del Sole c&rsquo;era fino a Bologna e poi si fermava, perché la stava finendo. Ci mettemmo sei ore, non ricordo precisamente. Ricordo però una cosa: c&rsquo;era la valigia di cuoio.</p>
+<p>Niccolò conosceva la valigia: stava in salotto a Milano, sotto la finestra, con dentro foto e cartoline. Aveva l&rsquo;etichetta <strong>MORELLI — MILANO</strong> e un odore di cuoio e di tempo. Suo nonno Marco, il figlio del nonno Oreste, l&rsquo;aveva presa con sé nei viaggi del &lsquo;64.</p>
+<p>— E poi quest&rsquo;anno? — chiese Niccolò.</p>
+<p>— Quest&rsquo;anno c&rsquo;è l&rsquo;agriturismo. Tuo nonno Marco, tuo padre Luca, tu: tutti avete viaggiato, in modi diversi. Ma io ho viaggiato di più perché ho viaggiato con la testa. Oggi ci sono le macchine, i voli, gli alberghi, i treni veloci; una volta andavi a Rimini e ti sentivi in vacanza, oggi vai a Rimini e puoi andare anche a Parigi nello stesso weekend. Il viaggio è diventato facile — ma forse è diventato anche più superficiale.</p>
+<p>Il nonno tacque. Poi aggiunse, guardando Niccolò negli occhi:</p>
+<p>— Ma viaggiare è una cosa seria, Niccolò. Non si tratta di muoversi: si tratta di capire. Chi viaggia senza capire torna uguale a prima; chi viaggia per capire torna diverso — e di solito sta meglio.</p>
+<p><em>«Il nonno è un libro aperto. Un libro che profuma di sapone da bucato e di pane toscano.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch5"><h2>Capitolo 5 — Computer e posta Internet</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_06_internet.jpg" alt="Illustrazione — Capitolo 5 — Computer e posta Internet" loading="lazy"></figure><p>Il bar del paese aveva un computer con Internet — l&rsquo;unico del Mugello, almeno secondo il barista. Niccolò aveva sentito parlare di «Internet» in TV ma non l&rsquo;aveva mai usato davvero: sapeva solo che era una specie di biblioteca magica a cui tutti potevano collegarsi.</p>
+<p>Il barista — <strong>Signor Aldo</strong>, con il grembiule bianco e i capelli bianchi come l&rsquo;alluminio — spiegò come si usava: una password, una linea telefonica lenta, un modem che cantava ogni volta che si connetteva, e una schermata con tante finestre blu che si aprivano e si chiudevano.</p>
+<p>— Vuoi scrivere a qualcuno? — chiese Aldo, accendendo il modem col gesto di chi apre un forziere.</p>
+<p>Niccolò ci pensò. Era la prima volta in vita sua che scriveva a qualcuno che non conosceva di persona — anzi, era la prima volta che scriveva a qualcuno senza mettere la lettera in una busta. Scrisse:</p>
+<p><em>«Cara Nonna Lina, sono in campagna, ci sono le mucche e il pane caldo e un cane che si chiama Birbone. Saluti dal Mugello. Niccolò»</em></p>
+<p>— Ma il computer ha la sua posta? — chiese.</p>
+<p>— Sì, si chiama <strong>e-mail</strong>, — disse Aldo. — Per il momento non è diffusa: la maggior parte della gente non ha nemmeno la linea in casa. Tra qualche anno tutti la avranno, e i postini piangeranno. Ma tu sarai onesto e saggio con essa, sì?</p>
+<p>Niccolò annuì convintissimo. Quando la mail partì, il modem cantò di nuovo (un fischio acuto seguito da un fruscìo interminabile) e lui sentì un brivido strano lungo la schiena: la prima <strong>posta senza busta</strong> della sua vita.</p>
+<p><em>«Ho inviato una lettera che non esiste più. O forse esiste per sempre, in un posto dove i fili di rame portano le parole. Non so cosa sia più spaventoso: che ci sia, o che non ci sia.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch6"><h2>Capitolo 6 — La tangente del contadino e la legge 730</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_07_legge.jpg" alt="Illustrazione — Capitolo 6 — La tangente del contadino e la legge 730" loading="lazy"></figure><p>Una mattina, durante la mungitura, il nonno Oreste spiegò una cosa importante a Niccolò e a Luca: perché esisteva l&rsquo;agriturismo — e non era una risposta semplice.</p>
+<p>— Prima degli anni Ottanta, — disse il nonno, — i contadini avevano le mucche e i campi, ma guadagnavano poco. Molti giovani lasciavano la campagna per la città, per la fabbrica, per le quattro mura di un ufficio. Allora lo Stato ha inventato una legge, nel <strong>1985</strong>: la <strong>Legge 730</strong>. Con questa legge, i contadini possono ospitare turisti nella loro azienda agricola, usando i prodotti che fanno loro stessi. Così possono guadagnare di più, e i giovani possono restare in campagna invece di andare in fabbrica.</p>
+<p>— E prima? — chiese Niccolò.</p>
+<p>— Prima esisteva solo la parola «agriturismo» — disse il nonno. — Nel <strong>1983</strong> c&rsquo;era stata una prima legge sul turismo che lo citava; nel <strong>1973 in Trentino</strong> si era iniziato a sperimentare; solo nel 1985 è diventato legge nazionale. Prima c&rsquo;era una sola cosa: lavorare e basta. Il contadino non era un albergatore: era un produttore, un curatore della terra, un custode — e veniva pagato come tale, cioè poco.</p>
+<p>Pierina portò una bruschetta con l&rsquo;olio nuovo, verde e profumato.</p>
+<p>— E così, — disse, — noi stasera ceneremo con pane mio, olio mio, formaggio mio. E voi ringrazierete con i vostri soldi, come merita chi ha lavorato per voi tutto l&rsquo;anno.</p>
+<p><em>«Una legge è una promessa. Questa promette che la campagna non deve morire. Io l&rsquo;ho visto: la campagna è viva.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch7"><h2>Capitolo 7 — Deviazione per Roma</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_08_deviazione.jpg" alt="Illustrazione — Capitolo 7 — Deviazione per Roma" loading="lazy"></figure><p>Una sera, dopo cena, con le cicale che suonavano come grilli elettrici, il nonno Oreste appoggiò le mani sul tavolo di legno e disse:</p>
+<p>— Bambini, ho una proposta. La Quercia è bellissima, ma io voglio veder Roma: c&rsquo;è il <strong>Giubileo</strong>.</p>
+<p>Il Giubileo era l&rsquo;<strong>Anno Santo</strong>, un evento che il Papa indiceva ogni venticinque anni, e il <strong>Giubileo 2000</strong> era in corso da gennaio. Un quarto di secolo dopo il precedente, Roma aspettava milioni di pellegrini: strade ribattezzate per l&rsquo;occasione, cantieri dappertutto, prezzi alle stelle, emozione ovunque.</p>
+<p>— Ci vanno trenta milioni di persone? — chiese Niccolò.</p>
+<p>— Venticinque, secondo le stime — disse Luca — e Roma è piena di cantieri e di gente. Ma se vogliamo andarci, andiamo. Il treno la mattina presto, il Giubileo per tutto il giorno, e la notte di nuovo qui, a dormire nei letti dell&rsquo;agriturismo.</p>
+<p>— Non ci si perde in mezzo a tanta gente! — scherzò la mamma Sara.</p>
+<p>— No, — disse il nonno — ci perdo. Ma con stile.</p>
+<p><em>«Roma. La città che tutti conoscono dal telegiornale. Io ci andrò davvero, con scarpe vere e sudore vero.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch8"><h2>Capitolo 8 — Roma piena</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_09_roma.jpg" alt="Illustrazione — Capitolo 8 — Roma piena" loading="lazy"></figure><p>Il treno arrivò a Roma Termini alle dieci e mezza. La città era piena di cantieri e di pellegrini con gli zaini enormi; alcuni venivano dall&rsquo;Italia, altri dal mondo: tenevano le cartoline in mano, pregavano per strada, facevano domande a chiunque avesse un&rsquo;aria di sapere.</p>
+<p>Niccolò era colpito dalla quantità di gente: davanti alla Basilica di San Pietro, una piazza immensa piena di persone di tutte le razze e tutte le lingue; davanti al Colosseo, una folla che sembrava non finire mai; davanti alla Fontana di Trevi, lanci di monete e flash di macchine fotografiche. La mamma gli teneva la mano stretta; Luca teneva la macchina fotografica pronta; il nonno guardava i bambini che correvano e rideva sotto i baffi.</p>
+<p>— Questo è il Giubileo, — disse. — Questa è Roma. E questa siete voi. Non dimenticatelo: voi siete Roma, in questo momento.</p>
+<p>Prima di partire, il nonno comprò una cartolina speciale, con la scritta stampata in oro: <strong>GIUBILEO 2000</strong>. Sulla cartolina c&rsquo;era un disegno di San Pietro con le chiavi e la porta santa.</p>
+<p>— Per la nostra valigia, — disse. — Così Roma non finisce quando il treno parte.</p>
+<p><em>«Roma è immensa. Io sono piccolo. Ma con la mano del nonno stretta forte, posso guardare anche le cose più grandi.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch9"><h2>Capitolo 9 — La cartolina speciale</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_10_cartolina.jpg" alt="Illustrazione — Capitolo 9 — La cartolina speciale" loading="lazy"></figure><p>Sul treno del ritorno, Niccolò mise la cartolina del Giubileo nello zaino, nello scompartimento delle cose preziose. La mamma gli chiese se voleva scriverla.</p>
+<p>— A chi? — chiese Niccolò.</p>
+<p>— A chi vuoi tu.</p>
+<p>Ci pensò a lungo, guardando dal finestrino le colline del Lazio che scivolavano via. Alla fine scrisse a suo cugino, che abitava a Genova e che non era mai venuto al mare:</p>
+<p><em>«Caro cugino, sono stato a Roma per il Giubileo. La città è piena di gente: pellegrini, turisti, cantieri, suore, statue, bancarelle, gelatai, polizia. Ho visto San Pietro con le chiavi. Non so spiegare. Quando torni ti dico. — Niccolò»</em></p>
+<p>Il nonno Oreste lesse la cartolina sopra le spalle di Niccolò, e annuì lentamente, come approvando un esame.</p>
+<p>— Quando avrai dieci anni, — disse, — saprai anche tu cosa vuol dire essere romani per un giorno. E spero che tu lo sia spesso.</p>
+<p><em>«Una cartolina non serve a dire quello che è successo: serve a dire quello che non riesci a spiegare a voce.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch10"><h2>Capitolo 10 — La busta telefonica</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_11_scheda.jpg" alt="Illustrazione — Capitolo 10 — La busta telefonica" loading="lazy"></figure><p>A Roma, durante la visita, Niccolò usò un telefono pubblico per la prima volta nella vita. Il nonno gli diede una <strong>scheda telefonica</strong> da mille lire, gialla e verde, con sopra la scritta <strong>Telecom</strong>.</p>
+<p>— Con questa telefoni a chi vuoi. Occhio che la scheda finisce — non chiedere quanto: scoprirai dopo.</p>
+<p>Niccolò telefonò a casa, a Milano, e parlò con la nonna Lina per quaranta secondi:</p>
+<p>— Nonna! Sono a Roma! Abbiamo visto San Pietro! Ci sono trenta milioni di persone! Il papà ha comprato una cartolina con le chiavi!</p>
+<p>— Bravo! — gridò nonna Lina dall&rsquo;altra parte del filo. — Salutami tutti! E saluta nonno Oreste, quel vecchietto testardo!</p>
+<p>La scheda si esaurì di colpo. Il telefono tornò in silenzio. Niccolò riappese la cornetta e sentì il vuoto improvviso del silenzio dopo il telefono: una sensazione che non conosceva, come se il mondo si fosse chiuso di colpo. Si chiese se un giorno avrebbe avuto un telefono sempre con sé — e la risposta, dentro di sé, era no. Non poteva immaginarlo.</p>
+<p><em>«Quaranta secondi di voce attraverso un filo. Per me, valgono tutto il viaggio.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch11"><h2>Capitolo 11 — Ritorno alla Quercia</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-3-agriturismo-giubileo/assets/illus_12_valigia.jpg" alt="Illustrazione — Capitolo 11 — Ritorno alla Quercia" loading="lazy"></figure><p>Tornati a La Quercia, Niccolò passò gli ultimi due giorni tra le mucche e il forno — come se avesse bisogno di ricordarli cuore prima che la testa li archivi. Pierina gli regalò un barattolo di ricotta secca per nonna Lina e una bottiglia di olio nuovo per casa.</p>
+<p>La sera prima di partire, con le stelle che spuntavano una a una sopra La Quercia, il nonno si sedette sulla panca di legno davanti alla casa e tirò fuori la valigia di cuoio.</p>
+<p>— Fammi vedere — disse Niccolò — il punto in cui hai messo le cartoline.</p>
+<p>Il nonno aprì la valigia: c&rsquo;era la cartolina del 1964 (Rimini), la cartolina del 1979 (Baia del Sole, con Sara) e ora la cartolina del 2000 (Giubileo, Roma, col nonno e il nipote). Sotto, c&rsquo;era un piccolo spazio vuoto, come una stanza d&rsquo;albergo che aspetta il prossimo ospite.</p>
+<p>— Quello è per te, — disse il nonno. — Quando sarai grande e avrai viaggiato, metterai lì la tua cartolina. E così la valigia continuerà a vivere.</p>
+<p>Niccolò ci pensò: la sua vita era appena cominciata. Ma sapeva che l&rsquo;avrebbe fatto. Sapeva che la valigia non era una cosa: era un patto di famiglia.</p>
+<p><em>«La valigia ha una stanza vuota in attesa di me. Io non la dimenticherò. Non mai.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol3-ch12"><h2>Capitolo 12 — Le lire vanno in pensione</h2><p>Ultima mattina: colazione con latte appena munto, pane toscano e miele millefiori. Il nonno Oreste spiegò a Niccolò che stava arrivando una cosa nuova — la cosa più nuova di tutte.</p>
+<p>— Tu conosci le lire, — disse. — Le lire sono state i soldi dell&rsquo;Italia per centoquarant&rsquo;anni. Ma dal primo gennaio del <strong>2002</strong>, le lire non esisteranno più: ci sarà l&rsquo;<strong>euro</strong>, la moneta comune europea. Comprerai il pane con le monete nuove, non più con le lire.</p>
+<p>— E quanto vale una lira in euro? — chiese Niccolò.</p>
+<p>— Milleottocentocinquanta lire circa fanno un euro. Ma io preferisco pensare che un euro vale milleottocentocinquanta lire — perché oggi le lire valgono più per abitudine che per altro.</p>
+<p>Niccolò sorrise. Si guardò le scarpe nuove. Pensò che stava crescendo in un&rsquo;Italia diversa da quella del nonno: un&rsquo;Italia con Internet, con l&rsquo;euro, con i villaggi turistici, con i Giubilei. Un&rsquo;Italia che cambiava pelle ogni vent&rsquo;anni, e che eppure rimaneva sempre la stessa — per le cose che contano.</p>
+<p>E forse — pensò — era meglio così.</p>
+<p><em>«La valigia di cuoio non è di uno solo: è di tutta la famiglia. Un giorno, quando sarò grande, la porterò a mio figlio — e gli racconterò del 2000, del Giubileo, di La Quercia, e della mia prima e-mail.»</em></p>
+<hr />
+<h1>Apparati</h1></section>
+<section class="chapter" id="vol3-ch13"><h2>Lo sai che…?</h2><ol>
+<li><strong>L&rsquo;agriturismo è un&rsquo;invenzione italiana.</strong> La prima legge nazionale sull&rsquo;agriturismo è la <strong>Legge 730/1985</strong> (5 dicembre 1985). Era preceduta dalla Legge 217/1983 (che la citava nella sezione sul turismo) e da sperimentazioni in Trentino (1973) e in altre regioni.</li>
+<li><strong>Il turismo in Italia triplicò tra il 1956 e il 1965</strong> (presenze legate alle vacanze) — calcolato in tempi del Boom economico.</li>
+<li><strong>Il Giubileo 2000</strong> è stato uno degli Anni Santi più partecipati di sempre: secondo le stime, circa <strong>25 milioni di pellegrini</strong> arrivarono a Roma nell&rsquo;anno — con punte di 1,2 milioni al giorno nei giorni di festa.</li>
+<li><strong>Le lire lasciarono il posto all&rsquo;euro il 1° gennaio 2002</strong> — un passaggio storico per l&rsquo;Europa e per l&rsquo;Italia, dopo 140 anni di &ldquo;lira&rdquo; (la lira era la moneta italiana dal 1862).</li>
+<li><strong>Internet arrivò in Italia negli anni &lsquo;90</strong>: il primo provider commerciale fu <strong>Tin</strong> (Telecom Italia) nel 1995; <strong>Booking.com</strong> fu fondata nel 1996 in Olanda; <strong>TripAdvisor</strong> nel 2000, nello stesso anno del Giubileo.</li>
+<li><strong>L&rsquo;Italia ospitò i Mondiali di calcio nel 1990</strong>, con un boom di arrivi di turisti dall&rsquo;estero e nuove strutture ricettive.</li>
+</ol></section>
+<section class="chapter" id="vol3-ch14"><h2>Parole d'epoca</h2><table>
+<thead>
+<tr>
+<th>Parola</th>
+<th>Significato</th>
+<th>Dal libro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>agriturismo</td>
+<td>ospitalità rurale connessa all&rsquo;azienda agricola</td>
+<td>«La Quercia»</td>
+</tr>
+<tr>
+<td>Giubileo</td>
+<td>Anno Santo, celebrazione cattolica ogni 25 anni</td>
+<td>«Giubileo 2000»</td>
+</tr>
+<tr>
+<td>pellegrino</td>
+<td>chi viaggia per fede</td>
+<td>«I pellegrini»</td>
+</tr>
+<tr>
+<td>e-mail</td>
+<td>posta elettronica</td>
+<td>«La prima e-mail»</td>
+</tr>
+<tr>
+<td>modem</td>
+<td>apparecchiatura per connettersi a Internet</td>
+<td>«Il modem cantava»</td>
+</tr>
+<tr>
+<td>scheda telefonica</td>
+<td>tessera prepagata per i telefoni pubblici</td>
+<td>«La scheda da mille lire»</td>
+</tr>
+<tr>
+<td>lire</td>
+<td>moneta italiana fino al 2002</td>
+<td>«Le lire»</td>
+</tr>
+<tr>
+<td>euro</td>
+<td>moneta comune europea dal 2002</td>
+<td>«L&rsquo;euro arriva»</td>
+</tr>
+<tr>
+<td>Agriturismo</td>
+<td>tipologia di ricettività in azienda agricola</td>
+<td>«La Quercia»</td>
+</tr>
+</tbody>
+</table></section>
+<section class="chapter" id="vol3-ch15"><h2>Linea del tempo</h2><ul>
+<li><strong>1983</strong> — Legge 217: prima citazione statale dell&rsquo;agriturismo</li>
+<li><strong>1985</strong> — Legge 730: prima legge-quadro sull&rsquo;agriturismo</li>
+<li><strong>1990</strong> — Mondiali di calcio in Italia</li>
+<li><strong>1995</strong> — primo provider Internet in Italia (Tin)</li>
+<li><strong>1996</strong> — Booking.com fondata in Olanda</li>
+<li><strong>1998</strong> — Google fondata in California</li>
+<li><strong>2000</strong> — Giubileo; TripAdvisor fondata</li>
+<li><strong>2002</strong> — introduzione dell&rsquo;euro</li>
+</ul></section>
+<section class="chapter" id="vol3-ch16"><h2>La storia vera dietro la storia</h2><p><em>Per genitori e insegnanti</em></p>
+<p>Il 2000 fu un anno cerniera: la fine di un millennio, l&rsquo;inizio di un altro. L&rsquo;Italia celebrava il Giubileo con una folla record a Roma; intanto le famiglie scoprivano l&rsquo;agriturismo — la vacanza in campagna che riportava i giovani verso le terre dei nonni — e il mondo si preparava a Internet di massa.</p>
+<p>Il Giubileo 2000 portò a Roma cantieri, miliardi di euro in restauri e una curiosità mondiale per la città. Non fu solo un evento religioso: fu un evento di turismo internazionale. Lo stesso anno, in Italia, nascevano i primi &ldquo;bed &amp; breakfast&rdquo; nelle case private e i primi siti di prenotazione online.</p>
+<p><strong>Domanda in classe:</strong> <em>«Perché qualcuno preferisce un agriturismo a un hotel? Cosa cambia?»</em></p>
+<p><strong>Fonti:</strong> Università di Torino; Istat; Censis; Legge 730/1985; Legge 217/1983. Dossier completo in <code>PROGETTO_SAGA.md</code> §9.</p></section>
+</article>
+<article class="volume" id="vol4" data-vol="vol4">
+  <header class="vol-head">
+    <img class="vol-cover" src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_01_cover.jpg" alt="Copertina Vol. 4 · Selfie a Venezia" loading="lazy">
+    <div><h1>Vol. 4 · Selfie a Venezia</h1><p class="vol-sub">2026 — Lea, 11 anni · La valigia d'Italia</p></div>
+  </header>
+  <section class="chapter" id="vol4-ch1"><h2>Capitolo 1 — 139 milioni di arrivi</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_02_arrivi.jpg" alt="Illustrazione — Capitolo 1 — 139 milioni di arrivi" loading="lazy"></figure><p>Lea aveva undici anni, una coda di cavallo castana, due occhi marroni curiosi e uno zaino pieno di pins: pins di Parigi con la Torre Eiffel, pins di Roma con il Colosseo, una pin di un concerto di cui ricordava solo il ritornello. Si chiamava Lea, e stava per partire per le vacanze estive con i suoi genitori, Niccolò e Viola.</p>
+<p>La valigia era semiale aperta sul pavimento della camera, con i vestiti sparsi tutt&rsquo;intorno come petali dopo una sbornia di sole. Lea provava a infilare il telo da mare dentro uno scompartimento troppo piccolo.</p>
+<p>— Papà, — disse mentre si sforzava con la valigia, — quanto è grande il turismo in Italia?</p>
+<p>Niccolò sorrise. Era un tipo che amava spiegare le cose, e che amava ancora di più quando qualcuno gli chiedeva di farlo. Suo nonno Marco, le aveva raccontato, era un ragioniere che amava i numeri; suo bisnonno Oreste era un operaio che amava i racconti. Lui aveva preso un po&rsquo; dall&rsquo;uno e un po&rsquo; dall&rsquo;altro.</p>
+<p>— Vuoi i numeri?</p>
+<p>— Voglio i numeri, — disse Lea, tutta seria.</p>
+<p>Niccolò prese il telefono e lesse ad alta voce:</p>
+<p>— Secondo <strong>Istat</strong>, nel <strong>2024</strong> l&rsquo;Italia ha accolto <strong>139,6 milioni di arrivi</strong> e <strong>466,2 milioni di presenze</strong> — il valore più alto mai registrato. Siamo il <strong>secondo Paese d&rsquo;Europa</strong> per presenze turistiche, dietro solo alla Spagna. Più della metà delle presenze — circa il <strong>54,5%</strong> — vengono da fuori Italia.</p>
+<p>Lea aprì il diario, l&rsquo;unico oggetto che non finiva mai nello zaino a casaccio, e scrisse con la penna che teneva dietro l&rsquo;orecchio:</p>
+<p><em>«139 milioni sono più del doppio dei miei anni di vita. Più di tutti i bambini e i ragazzi d&rsquo;Italia messi insieme, e anche più di tutte le paia di scarpe che esistono in Italia in questo momento. 466 milioni di presenze: una per ogni stella che non conto nemmeno.»</em></p>
+<p>— E dove vanno? — chiese.</p>
+<p>— Roma, Milano, Venezia — disse il papà. — Soprattutto le grandi città e il mare. Roma, Milano e Venezia sono le tre mete più visitate. E Venezia, in particolare, è il caso più studiato al mondo: una città di cinquantamila abitanti che ogni anno riceve tredici milioni di presenze.</p>
+<p>Lea chiuse il diario. Il viaggio sarebbe stato Venezia e poi Roma, la Roma del dopo-Giubileo 2025. Suo nonno Oreste — novant&rsquo;anni, cappello di paglia, un secolo di storia vissuta — era nato nello stesso anno in cui l&rsquo;Italia scopriva il mare di Rimini.</p>
+<p><em>«Viaggio = numeri + persone + memoria. I numeri me li dice il papà. Le persone le incontro per strada. La memoria&hellip; quella la porta la valigia.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch2"><h2>Capitolo 2 — Il Frecciarossa</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_03_frecciarossa.jpg" alt="Illustrazione — Capitolo 2 — Il Frecciarossa" loading="lazy"></figure><p>Partirono da Milano Centrale alle sette e venti. Il <strong>Frecciarossa</strong> — il treno più veloce d&rsquo;Italia, operativo dal 2008 — li portava a Venezia in circa due ore e mezza.</p>
+<p>Lea sedette al finestrino, col naso premuto contro il vetro e lo zaino stretto tra le ginocchia. Il paesaggio correva via come un film accelerato: i campi di mais della pianura, le cascine rosse, i paesi con i campanili bassi, le antenne sui tetti, le fabbriche spente della periferia, le pale eoliche in cima alle colline, poi i pioppi in fila lungo i canali, e all&rsquo;orizzonte, immenso e marrone, l&rsquo;Adriatico.</p>
+<p>— Papà, — chiese, — com&rsquo;era prima che ci fosse l&rsquo;alta velocità?</p>
+<p>— Prima, Roma-Milano era un viaggio di cinque ore, — disse Niccolò. — E prima ancora, ai tempi di tuo bisnonno Oreste, il treno cambiava a Bologna e a Ravenna, e duravano sei ore. Oggi il Frecciarossa è rapido, elettrico, comodo: consuma meno di un&rsquo;auto per passeggero, attraversa l&rsquo;Italia come una spina dorsale.</p>
+<p>Lea annuì, affascinata. Senza saperlo, pensò, entrambi i viaggi — il 1964 e il 2026 — erano fatti di una cosa che non cambiava: l&rsquo;Italia che si accorcia, sempre più vicina a se stessa.</p>
+<p>Il controllore passò con il sorriso di chi conosce tutti i bambini che si addormentano al rumore delle rotaie. Lea non si addormentò: guardava il paese scivolare via come se fosse un libro illustrato che si girava da solo.</p>
+<p><em>«Prima i viaggi erano un&rsquo;avventura. Ora sono una routine. Forse la magia sta nel finestrino, non nella destinazione.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch3"><h2>Capitolo 3 — L'app e il contributo di accesso</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_04_contributo.jpg" alt="Illustrazione — Capitolo 3 — L'app e il contributo di accesso" loading="lazy"></figure><p>Prima di scendere a Venezia, Viola mostrò a Lea il telefono: una schermata dell&rsquo;app del Comune di Venezia, con il QR code ben visibile e un conto alla rovescia.</p>
+<p>— Hai il <strong>codice QR</strong>? — chiese Viola.</p>
+<p>— Ce l&rsquo;ho io, — disse Niccolò. — Ci hanno fatto il <strong>contributo di accesso</strong>. Venezia è stata la <strong>prima città al mondo</strong>, dal 2024, a chiedere un piccolo contributo ai turisti che vengono per un giorno solo, senza dormire in città.</p>
+<p>— Quanto costa? — chiese Lea.</p>
+<p>— <strong>Cinque euro</strong> se prenoti in anticipo, <strong>dieci euro</strong> se aspetti l&rsquo;ultimo momento. Vale per i weekend e i giorni di grande affluenza, da aprile a luglio — più o meno il periodo in cui le masse discendono sulla città come gabbiani su un branco di sardine.</p>
+<p>Lea annuì.</p>
+<p>— E a cosa serve?</p>
+<p>— A limitare i «mordi-e-fuggi», — disse il papà. — I turisti che arrivano la mattina e ripartono la sera, senza mai dormire in città. Venezia è una città fragile: se troppe persone camminano nello stesso giorno sugli stessi ponti, le pietre si consumano, i canali si riempiono di barche, i residenti non riescono nemmeno a portare i bambini a scuola. Il contributo di accesso non è un pedaggio: è un patto.</p>
+<p>Lea capì una cosa nuova: viaggiare costa — non solo soldi, ma rispetto. E il rispetto, a differenza del biglietto del treno, non si compra: si esercita.</p>
+<p><em>«5 euro per entrare in una città che non è mia ma che devo rispettare come fosse mia. Forse è questo, la cittadinanza: prendersi cura dei luoghi che non ci appartengono.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch4"><h2>Capitolo 4 — Venezia mordi e fuggi</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_05_vaporetto.jpg" alt="Illustrazione — Capitolo 4 — Venezia mordi e fuggi" loading="lazy"></figure><p>Il vaporetto da Piazzale Roma a Rialto era pieno come un tram dell&rsquo;ora di punta. Gomito a gomito, valige e bambini, zaini e sacchetti di plastica. Un gruppo di ragazzi americani cantava «Sweet Caroline» con un microfono giocattolo; una signora inglese fotografava tutto con una macchina istantanea; un ragazzo giapponese faceva selfie a raffica tenendo il telefonino a braccio teso.</p>
+<p>— Mamma, — sussurrò Lea, — qui ci sono troppe persone.</p>
+<p>— È vero, — disse Viola. — Venezia ha cinquantamila abitanti circa. Il 2024 ha registrato <strong>oltre tredici milioni di presenze</strong> in città. È un numero che nessun&rsquo;altra città con cinquantamila abitanti potrebbe sostenere. Per questo c&rsquo;è il contributo di accesso: per dire basta, o almeno per rallentare.</p>
+<p>Lea guardò la folla: un mosaico di lingue, cappelli, occhiali da sole, bambini urlanti e anziani con le sedie a rotelle spinte da figli pazienti. Pensò che Venezia fosse bellissima — ma che fosse come un libro letto da troppe persone contemporaneamente: le pagine si consumano, le immagini sbiadiscono, eppure il libro resta aperto.</p>
+<p>Il vaporetto attraccò a Rialto tra due gondole e un taxi acqueo. Tutti uscirono in un&rsquo;ondata unica, come sardine dal barile.</p>
+<p><em>«Oltre 13 milioni di presenze. 50mila abitanti. 260 presenze per abitante ogni anno. Non è una città: è un palcoscenico. E i veneziani sono le comparse che devono viverci.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch5"><h2>Capitolo 5 — La Venezia dei veneziani</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_06_cannaregio.jpg" alt="Illustrazione — Capitolo 5 — La Venezia dei veneziani" loading="lazy"></figure><p>Viola conosceva <strong>Lorenzo</strong>, un affittacamere del quartiere Cannaregio. Lorenzo era un uomo di quarant&rsquo;anni, con la barba, un sorriso lento e la casa piena di libri e di mappe antiche attaccate alle pareti con le puntine da disegno.</p>
+<p>— Benvenuti nella Venezia vera, — disse, versando tre bicchieri di vino e un succo d&rsquo;arancia per Lea. — Qui la gente vive ancora: va al mercato del pesce, porta i bambini a scuola in vaporetto, si lamenta del prezzo della spesa e del rumore dei turisti, come tutti. I turisti la vedono una volta al giorno, sempre gli stessi cinque posti; la Venezia vera esiste sempre, anche quando i pullman sono già tornati indietro.</p>
+<p>Lea camminava per Cannaregio e vedeva, per la prima volta, la Venezia che non finisce in cartolina: i gatti sui tetti che si rincorrevano al tramonto, le nonne affacciate ai balconi con i gomiti sui davanzali a guardare la calle sotto, il fornaio con la farina sul grembiule, la scuola che squillava per l&rsquo;intervallo, i panni stesi tra una finestra e l&rsquo;altra come bandiere colorate.</p>
+<p>— Mamma, — disse, — questa è più bella ancora.</p>
+<p>— Sì, — disse Viola. — Ma rischia di sparire, se tutti vanno solo in Piazza San Marco e mai nei quartieri. Venezia non è un museo: è una casa, e le case non devono diventare biglietti da visita.</p>
+<p>Lea si fermò a guardare i panni stesi. Pensò che una città è come una persona: se la guardi solo da lontano, non la conosci. Se ci entri dentro e la rispetti, forse ti lascia entrare anche lei.</p>
+<p><em>«Cannaregio è come la casa della nonna: disordinata, vera, con i piatti da lavare. Ma è casa. E nessuno la racconta mai.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch6"><h2>Capitolo 6 — Piazza San Marco e il silenzio</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_07_sanmarco.jpg" alt="Illustrazione — Capitolo 6 — Piazza San Marco e il silenzio" loading="lazy"></figure><p>Piazza San Marco al mattino prestissimo era quasi vuota. I piccioni camminavano sulle piastrelle umide, lasciando impronte a tre dita come pennelli su una tela. La Basilica era chiusa per restauro, coperta da ponteggi e da una rete bianca che filtrava la luce del mattino.</p>
+<p>Niccolò leggeva i dati sul telefono mentre Viola beveva un caffè sulla soglia di uno storico caffè della piazza, con le sedie di vimini ancora impilate.</p>
+<p>— La fila per il Colosseo è lunga due ore, — disse il papà leggendo. — E a Pompei c&rsquo;è un <strong>tetto di ventimila visitatori al giorno</strong> — entrato in vigore nel novembre 2024 — per proteggere gli affreschi e gli ambienti dal deterioramento dovuto ai calpestii e al respiro dei turisti.</p>
+<p>Lea guardò il campanile di San Marco, che svettava nel cielo ancora rosa e oro. Si sentì piccola, ma in pace. Per la prima volta nella vita, Piazza San Marco non le sembrava un posto dove si fa selfie: le sembrava un posto dove si sta in silenzio.</p>
+<p>— Il turismo non è male, — disse. — Ma il turismo senza regole sì.</p>
+<p>I genitori si guardarono e sorrisero.</p>
+<p><em>«Piazza San Marco, 6 del mattino: i piccioni, la luce rosa, la Basilica in restauro. La città che nessuno ha ancora calpestato oggi. È quasi un miracolo.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch7"><h2>Capitolo 7 — Airbnb e chi ci abita</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_08_airbnb.jpg" alt="Illustrazione — Capitolo 7 — Airbnb e chi ci abita" loading="lazy"></figure><p>Alla sera, davanti a una pizza in una pizzeria del quartiere, il papà raccontò che in molte città italiane sempre più case diventano <strong>alloggi per turisti</strong> — affitti brevi, prenotati con app o siti di prenotazione.</p>
+<p>— Cosa sono gli Airbnb? — chiese Lea.</p>
+<p>— Sono case private affittate a turisti, — disse Niccolò. — Nati nel 2008, sono diventati un modo per guadagnare in più per chi ha una stanza libera. Ma hanno anche un problema: molte famiglie non trovano casa, perché gli appartamenti migliori sono affittati ai turisti invece che ai residenti. I letti per turisti crescono, le famiglie residenti calano.</p>
+<p>— Allora è giusto vietarli? — chiese Lea.</p>
+<p>— Non è semplice — disse la mamma. — A Venezia il Comune sta limitando gli affitti turistici nel centro storico. A Roma, Firenze, Milano succede lo stesso. È un equilibrio delicato: il turismo dà lavoro, dà vita ai negozi, permette di vivere in città a chi ci vive; ma non può svuotare le città, trasformandole in fondali del teatro.</p>
+<p>Lea annuì. Forse non c&rsquo;erano risposte semplici. Forse le domande giuste erano già un inizio — più importante di qualsiasi risposta preconfezionata.</p>
+<p><em>«Il turismo è un po&rsquo; come il sale: poca esalta i sapori, troppa rovina il piatto. Chi si mette a tavola deve saper quanto metterne.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch8"><h2>Capitolo 8 — Treno per Roma</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_09_roma.jpg" alt="Illustrazione — Capitolo 8 — Treno per Roma" loading="lazy"></figure><p>L&rsquo;indomani partirono per Roma. Frecciarossa di nuovo, un&rsquo;ora e mezza. Lea guardava il paesaggio cambiare fuori dal finestrino: le colline dell&rsquo;Umbria coi cipressi dritti come soldatini, le cascate delle Marche dove l&rsquo;Appennino si spezzava in gole verdi, le cupole di Roma che spuntava all&rsquo;orizzonte come un sogno di travertino.</p>
+<p>— Bisnonno Oreste è partito da Milano in Fiat 500, e ci metteva due giorni, — disse Lea.</p>
+<p>— Due giorni, sì. E con lui viaggiava mio nonno Marco, che aveva dieci anni come te, — disse Niccolò. — Era l&rsquo;estate del 1964: l&rsquo;Autostrada del Sole finiva a Bologna. Oggi ci mettiamo un&rsquo;ora e mezza. Il treno è diventato il modo migliore: consuma meno, occupa poco spazio, attraversa l&rsquo;Italia come una spina dorsale.</p>
+<p>Lea annuì. Capiva: viaggiare non è solo arrivare; è anche come ci si arriva. E il modo in cui ci si arriva dice molto di chi siamo — e dell&rsquo;Italia che vogliamo.</p>
+<p><em>«Da Milano a Roma in un&rsquo;ora e mezza. Nel &lsquo;64 ci volevano due giorni. Forse un giorno ci vorrà un&rsquo;ora. Il mondo si rimpicciolisce, ma la curiosità no.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch9"><h2>Capitolo 9 — Il Colosseo con il tetto giornaliero</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_10_colosseo.jpg" alt="Illustrazione — Capitolo 9 — Il Colosseo con il tetto giornaliero" loading="lazy"></figure><p>A Roma, il Colosseo era pieno di turisti con le audioguida e le bandierine: tedeschi, francesi, americani, giapponesi, italiani, ognuno col suo gruppetto e il suo megafono. Ma fuori c&rsquo;era un cartello grande:</p>
+<p><strong>«VISITE LIMITATE A 20.000 PERSONE AL GIORNO — PRENOTAZIONE OBBLIGATORIA CON NOME E COGNOME»</strong></p>
+<p>(Nota di nonna Viola: «il Colosseo ha accettato 4 milioni di visitatori nel 2024, con ingressi controllati. Pompei ha introdotto lo stesso tetto nel novembre 2024 — ventimila visitatori al giorno, non uno di più»).</p>
+<p>Lea guardò la coda: file ordinate, biglietti con QR code, controlli di sicurezza, un grande piazzale con fontana e gelatai. Capì che i luoghi famosi non erano infiniti: avevano una capienza, come una stanza. E una stanza, quando è piena, non si allarga: si aspetta il turno.</p>
+<p>— Quanto si aspetta? — chiese Lea.</p>
+<p>— Due ore, — disse il papà. — Ma è un&rsquo;attesa che fa parte del viaggio. Non si può saltare la fila della storia.</p>
+<p><em>«Il Colosseo è come un libro gigante: ci sono solo 20.000 persone al giorno che possono leggerlo per intero. Chi arriva dopo aspetta, come per tutto ciò che conta.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch10"><h2>Capitolo 10 — La città dopo il Giubileo</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_11_giubileo.jpg" alt="Illustrazione — Capitolo 10 — La città dopo il Giubileo" loading="lazy"></figure><p>Roma era appena uscita dal <strong>Giubileo 2025</strong> — l&rsquo;Anno Santo terminato il 28 dicembre 2025, con oltre trenta milioni di pellegrini e cantieri ovunque: Mura Aureliane in restauro, San Pietro lucidato, il Tevere disinquinato, piazze ripavimentate, alberghi riaperti dopo i lavori della Commissione Giubilare.</p>
+<p>Niccolò spiegò a Lea: il Giubileo aveva fatto entrare soldi e cantieri, ma anche stanchezza e polvere. La città ora respirava di nuovo, con strade più pulite e monumenti più visibili — ma anche con prezzi più alti e quartieri gentrificati dove prima abitavano le famiglie romane.</p>
+<p>— E il prossimo Giubileo? — chiese Lea.</p>
+<p>— Il prossimo Giubileo ordinario è nel 2050, — disse il papà. — Ma nel frattempo Roma ha fatto un restauro incredibile, grazie ai pellegrini e ai turisti. E i turisti, se li gestisci bene, diventano i custodi della città che visitano.</p>
+<p>Lea capì che il turismo era anche una macchina economica enorme, che poteva fare bene o male a seconda di come la si usa. Come tutto, era uno strumento — e gli strumenti non hanno moralità: ce l&rsquo;hanno le persone che li maneggiano.</p>
+<p><em>«Il turismo ha pagato il restauro di Roma? Forse. Ma se un giorno Roma diventasse solo un set fotografico, cosa resterà da restaurare?»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch11"><h2>Capitolo 11 — L'ultima cartolina</h2><figure class="plate"><img src="/saga-destinazione-italia/volume-4-selfie-a-venezia/assets/illus_12_cartolina.jpg" alt="Illustrazione — Capitolo 11 — L'ultima cartolina" loading="lazy"></figure><p>A casa, la sera, Lea sedette al tavolo del soggiorno. Suo nonno Oreste — novant&rsquo;anni, cappello di paglia, giacca marrone — la guardava da sempre. Accanto a lui, c&rsquo;era il silenzio di chi ha visto troppe cose per stupirsi ancora, e di chi sa ancora commuoversi.</p>
+<p>Sul tavolo c&rsquo;era la <strong>valigia di cuoio</strong>.</p>
+<p>— Apri, — disse il nonno.</p>
+<p>Lea aprì la valigia. Dentro c&rsquo;erano tre cartoline: quella del <strong>1964</strong> (Milano–Rimini, Marco, Fiat 500), quella del <strong>1979</strong> (Sara, Baia del Sole), quella del <strong>2000</strong> (Niccolò, Giubileo). Accanto, un rettangolo vuoto, tracciato dal tempo e dall&rsquo;uso.</p>
+<p>— Quello è per te, — disse il nonno.</p>
+<p>Lea prese la penna che teneva dietro l&rsquo;orecchio. Scrisse, adagio, con la calligrafia ancora da ragazzina ma già decisa:</p>
+<p><em>«Sono andata a Venezia. Ho pagato il contributo di accesso. Ho visto Piazza San Marco quasi vuota, e Cannaregio piena di vita. Ho visto Roma, appena uscita dal Giubileo, e ho capito che i posti famosi non sono infiniti: hanno un cuore, e bisogna chiedere il permesso per toccarlo. Il turismo non è male: il turismo è un dono. I doni vanno aperti con delicatezza — come le uova, come i libri, come i segreti.</em>
+<em>— Lea, 11 anni, luglio 2026»</em></p>
+<p>Il nonno sorrise. Le lacrime brillavano dietro gli occhiali.</p>
+<p>— Benvenuta nella famiglia dei viaggiatori, — disse. — Questa famiglia non si interrompe mai. Viaggia con noi, e dopo di noi viaggerà con chiunque saprai amare questa valigia.</p>
+<p><em>«Una cartolina non è un pezzo di carta: è un biglietto da visita lasciato al tempo. Io ho lasciato la mia.»</em></p>
+<hr /></section>
+<section class="chapter" id="vol4-ch12"><h2>Capitolo 12 — La valigia torna</h2><p>Lea mise la cartolina nella valigia e la chiuse. Il nonno la prese con le mani tremolanti — quelle mani che avevano stretto il volante della Cinquecento, la macchina fotografica in Paestum, il telefono pubblico del Giubileo — e la ripose sul ripostiglio alto, sopra le scatole di scarpe e gli album di famiglia.</p>
+<p>— La valigia non va mai in disuso, — disse. — Questa valigia non finirà mai. Andrà avanti anche quando noi non ci saremo più. Di mano in mano, di viaggio in viaggio, di cartolina in cartolina.</p>
+<p>Lea annuì. Si sentì parte di una storia più grande di lei. Capì che i suoi bisnonni, i suoi nonni, i suoi genitori e lei stessa non erano altro che capitoli di un unico grande racconto: il racconto di una famiglia che aveva imparato a viaggiare senza rovinare ciò che vedeva.</p>
+<p>E capì una cosa definitiva: viaggiare non è partire. Viaggiare è tornare, con le tasche piene di storie e la testa leggera, a raccontare a chi non c&rsquo;era com&rsquo;è grande il mondo — e quanto piccolo è ciò che lo tiene in piedi.</p>
+<p><em>«La valigia più bella è quella che pesa meno, anche se dentro ha il mondo intero.»</em></p>
+<p>E mentre la casa si addormentava intorno a loro, e le luci di Milano facevano capolino tra le persiane, Lea pensò che da grande avrebbe voluto fare l&rsquo;operatrice turistica, la guida, l&rsquo;insegnante, chissà. Ma una cosa la sapeva già: ovunque sarebbe andata, avrebbe sempre portato con sé quella valigia — anche solo nella testa.</p>
+<hr />
+<h1>Apparati</h1></section>
+<section class="chapter" id="vol4-ch13"><h2>Lo sai che…?</h2><ol>
+<li><strong>Nel 2024 l&rsquo;Italia ha toccato il record assoluto</strong>: 139,6 milioni di arrivi (+4,5%) e <strong>466,2 milioni di presenze</strong> (+4,2%), secondo Istat — il dato più alto mai rilevato. Siamo 2ª in UE, dopo la Spagna.</li>
+<li><strong>Venezia ha registrato 13,29 milioni di presenze nel 2024</strong> — il record della città. Dal 2024 Venezia chiede ai visitatori giornalieri un <strong>contributo di accesso</strong> (5 € in anticipo, 10 € in ritardo) — prima città al mondo.</li>
+<li><strong>Il Covid-19 (2020–2022) ha svuotato l&rsquo;Italia</strong>: nel 2020 gli arrivi crollarono di oltre il 60%. Nel 2023 e 2024 il turismo è tornato oltre i livelli pre-pandemici.</li>
+<li><strong>Frecciarossa</strong> è attivo dal 2008: Milano–Roma in meno di tre ore; Milano–Venezia in circa due ore e mezza.</li>
+<li><strong>Booking.com</strong> (1996), <strong>TripAdvisor</strong> (2000) e <strong>Airbnb</strong> (2008) hanno cambiato il modo di prenotare e di viaggiare, anche in Italia.</li>
+<li><strong>Il Giubileo 2025</strong> (dicembre 2024 – dicembre 2025) ha portato a Roma tra 30 e 33 milioni di pellegrini, secondo le stime Censis — il Giubileo più partecipato dopo il 2000.</li>
+<li><strong>Pompei</strong> ha introdotto un tetto di 20.000 visitatori al giorno nel novembre 2024 per tutelare gli affreschi e i mosaici dal deterioramento.</li>
+</ol></section>
+<section class="chapter" id="vol4-ch14"><h2>Parole d'epoca</h2><table>
+<thead>
+<tr>
+<th>Parola</th>
+<th>Significato</th>
+<th>Dal libro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>overtourism</td>
+<td>eccesso di turisti in una località</td>
+<td>«Venezia»</td>
+</tr>
+<tr>
+<td>contributo di accesso</td>
+<td>ticket di ingresso a Venezia, dal 2024</td>
+<td>«Cinque euro»</td>
+</tr>
+<tr>
+<td>selfie</td>
+<td>autoritratto con il telefonino</td>
+<td>«I selfie in laguna»</td>
+</tr>
+<tr>
+<td>Airbnb</td>
+<td>piattaforma per affitti brevi di case private</td>
+<td>«Le case di Cannaregio»</td>
+</tr>
+<tr>
+<td>Frecciarossa</td>
+<td>treno AV di Trenitalia</td>
+<td>«Due ore e mezza»</td>
+</tr>
+<tr>
+<td>workation</td>
+<td>lavoro + vacanza remoto</td>
+<td>«I nomadi digitali»</td>
+</tr>
+<tr>
+<td>sostenibilità</td>
+<td>equilibrio tra turismo e tutela dei luoghi</td>
+<td>«La città che soffre»</td>
+</tr>
+<tr>
+<td>Giubileo</td>
+<td>Anno Santo</td>
+<td>«Giubileo 2025»</td>
+</tr>
+<tr>
+<td>mordi-e-fuggi</td>
+<td>turismo mordi-e-fuggi, giornaliero</td>
+<td>«Venezia mordi e fuggi»</td>
+</tr>
+</tbody>
+</table></section>
+<section class="chapter" id="vol4-ch15"><h2>Linea del tempo</h2><ul>
+<li><strong>1996</strong> — Booking.com fondata</li>
+<li><strong>2000</strong> — TripAdvisor fondata; Giubileo 2000</li>
+<li><strong>2002</strong> — introduzione dell&rsquo;euro</li>
+<li><strong>2008</strong> — Frecciarossa; Airbnb fondata</li>
+<li><strong>2015</strong> — Expo di Milano</li>
+<li><strong>2020</strong> — pandemia COVID-19, turismo fermo</li>
+<li><strong>2023</strong> — Anno record; Venezia intravede il superamento del 2019</li>
+<li><strong>2024</strong> — Italia record: 139,6M arrivi, 466,2M presenze; Venezia introduce il contributo di accesso; Pompei 20.000/giorno</li>
+<li><strong>2025</strong> — Giubileo; record di presenze per Venezia (13,29M)</li>
+<li><strong>2026</strong> — la storia di Lea</li>
+</ul></section>
+<section class="chapter" id="vol4-ch16"><h2>La storia vera dietro la storia</h2><p><em>Per genitori e insegnanti</em></p>
+<p>Il turismo globale nel 2024–2026 ha superato tutti i record. L&rsquo;Italia è il secondo Paese d&rsquo;Europa per presenze — dopo la Spagna — ma con una quota crescente di stranieri (nel 2024, il 54,5% delle presenze è straniero). Venezia, Firenze, Roma e le Cinque Terre sono città che reggono flussi enormi ogni giorno, e che rischiano di diventare musei viventi o, peggio, fondali anonimi.</p>
+<p>Le domande che si pone Lea nel libro sono domande vere: <strong>Quanto turismo può reggere una città? Chi ha diritto di abitare nelle città d&rsquo;arte? Come si viaggia senza rovinare ciò che si va a vedere?</strong> Non c&rsquo;è una risposta sola. Ma parlarne con i ragazzi è già un inizio.</p>
+<p>Il contributo di accesso di Venezia, introdotto nel 2024, è un esperimento: la prima città al mondo a chiedere per legge un pedaggio simbolico per visitarla senza pernottare. È un modo per dire che la bellezza ha un costo — non in denaro, ma in attenzione, cura, rispetto.</p>
+<p><strong>Domanda in classe:</strong> <em>«Cosa c&rsquo;è di buono e cosa c&rsquo;è di problematico nel turismo? Chi dovrebbe decidere quanti turisti entrano in una città?»</em></p>
+<p><strong>Fonti:</strong> Istat («I flussi turistici — Anno 2024», comunicato 2025); Comune di Venezia; Censis; MiC. Dossier completo in <code>PROGETTO_SAGA.md</code> §9.</p></section>
+</article>
+</main>
+<div class="toolbar">
+  <button id="prevCh">← Capitolo precedente</button>
+  <button id="nextCh">Capitolo successivo →</button>
+  <span id="progress">Vol. 1 · cap. 1</span>
+</div>
+<script>
+const vols = [...document.querySelectorAll('.volume')];
+const volArts = Object.fromEntries(vols.map(v => [v.id, v]));
+let currentVol = 'vol1';
+let sections = [];
+let secIdx = 0;
+function refreshSections() {
+  sections = [...document.querySelectorAll(`#${currentVol} .chapter`)];
+  secIdx = 0;
+  updateProgress();
+}
+function showVolume(vol) {
+  currentVol = vol;
+  vols.forEach(v => v.classList.toggle('active', v.id === vol));
+  document.querySelectorAll('.nav-vol').forEach(n => n.classList.toggle('open', n.dataset.vol === vol));
+  refreshSections();
+  window.scrollTo(0, 0);
+}
+function updateProgress() {
+  const total = sections.length;
+  const s = sections[secIdx];
+  document.getElementById('progress').textContent =
+    `${currentVol.replace('vol','Vol. ')} · sezione ${secIdx + 1}/${total} — ${s ? s.querySelector('h2').textContent.split('—')[0].trim() : ''}`;
+}
+function go(delta) {
+  const order = ['vol1','vol2','vol3','vol4'];
+  let i = secIdx + delta;
+  if (i < 0) {
+    const vi = order.indexOf(currentVol);
+    if (vi > 0) { showVolume(order[vi-1]); sections = [...document.querySelectorAll(`#${currentVol} .chapter`)]; secIdx = sections.length - 1; sections[secIdx].scrollIntoView({behavior:'smooth'}); updateProgress(); }
+    return;
+  }
+  if (i >= sections.length) {
+    const vi = order.indexOf(currentVol);
+    if (vi < order.length - 1) { showVolume(order[vi+1]); sections[0].scrollIntoView({behavior:'smooth'}); updateProgress(); }
+    return;
+  }
+  secIdx = i;
+  sections[secIdx].scrollIntoView({behavior:'smooth'});
+  updateProgress();
+}
+document.querySelectorAll('.nav-vol').forEach(n => {
+  n.querySelector('.nav-toggle').addEventListener('click', () => showVolume(n.dataset.vol));
+  n.querySelectorAll('.nav-chapters a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.getElementById(a.dataset.target);
+      secIdx = sections.indexOf(t);
+      t.scrollIntoView({behavior:'smooth'});
+      updateProgress();
+    });
+  });
+});
+document.getElementById('prevCh').addEventListener('click', () => go(-1));
+document.getElementById('nextCh').addEventListener('click', () => go(1));
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { secIdx = sections.indexOf(en.target); updateProgress(); } });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => obs.observe(s));
+showVolume('vol1');
+</script>
+</body>
+</html>
