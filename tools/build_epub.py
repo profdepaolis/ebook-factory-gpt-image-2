@@ -47,8 +47,8 @@ VOLUMES = {
         subject="ragazzi; storia; turismo; agriturismo; Giubileo; Italia; 2000",
         illus={1: "illus_02_busta.jpg", 2: "illus_03_stella.jpg", 3: "illus_04_forno.jpg",
                4: "illus_05_nonno.jpg", 5: "illus_06_internet.jpg", 6: "illus_07_legge.jpg",
-               7: "illus_08_roma.jpg", 8: "illus_09_giubileo.jpg", 10: "illus_10_scheda.jpg",
-               11: "illus_11_valigia.jpg"},
+               7: "illus_08_deviazione.jpg", 8: "illus_09_roma.jpg", 9: "illus_10_cartolina.jpg",
+               10: "illus_11_scheda.jpg", 11: "illus_12_valigia.jpg"},
     ),
     "vol4": dict(
         folder="volume-4-selfie-a-venezia",
@@ -57,9 +57,9 @@ VOLUMES = {
         title_html="<p class=\"kicker\">La valigia d'Italia</p><p class=\"title\">Selfie<br/>a Venezia</p><p class=\"subtitle\">La storia del turismo italiano raccontata<br/>dalla famiglia Morelli (vol. 4)</p><p class=\"series\">Estate 2026 · Lea, 11 anni · Milano → Venezia → Roma</p>",
         description="Estate 2026. Lea Morelli, 11 anni, va con la famiglia a Venezia con il contributo di accesso e poi a Roma, appena uscita dal Giubileo 2025. Overtourism, record di arrivi, tutorial per viaggiare senza rovinare ciò che amiamo. Quarto e ultimo volume della saga: la storia del turismo italiano dal Boom economico a oggi.",
         subject="ragazzi; storia; turismo; overtourism; Venezia; Italia; 2026",
-        illus={1: "illus_02_numeri.jpg", 2: "illus_03_frecciarossa.jpg", 3: "illus_04_qr.jpg",
-               4: "illus_05_mordi.jpg", 5: "illus_06_cannaregio.jpg", 6: "illus_07_sanmarco.jpg",
-               7: "illus_08_airbnb.jpg", 8: "illus_09_treno.jpg", 9: "illus_10_colosseo.jpg",
+        illus={1: "illus_02_arrivi.jpg", 2: "illus_03_frecciarossa.jpg", 3: "illus_04_contributo.jpg",
+               4: "illus_05_vaporetto.jpg", 5: "illus_06_cannaregio.jpg", 6: "illus_07_sanmarco.jpg",
+               7: "illus_08_airbnb.jpg", 8: "illus_09_roma.jpg", 9: "illus_10_colosseo.jpg",
                10: "illus_11_giubileo.jpg", 11: "illus_12_cartolina.jpg"},
     ),
 }
@@ -149,7 +149,7 @@ cover_path = ASSETS / "illus_01_cover.jpg"
 if cover_path.exists():
     book.set_cover("images/cover.jpg", cover_path.read_bytes())
 
-title_pg = epub.EpubHtml(title="Frontespizio", file_name="frontespizio.xhtml", lang="it")
+title_pg = epub.EpubHtml(uid="frontespizio", title="Frontespizio", file_name="frontespizio.xhtml", lang="it")
 title_pg.content = f"""<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it">
@@ -157,7 +157,7 @@ title_pg.content = f"""<?xml version="1.0" encoding="utf-8"?>
 <link rel="stylesheet" type="text/css" href="style/main.css"/></head>
 <body class="frontmatter">{cfg['title_html']}</body></html>""".encode("utf-8")
 
-colophon = epub.EpubHtml(title="Colophon e note", file_name="colophon.xhtml", lang="it")
+colophon = epub.EpubHtml(uid="colophon", title="Colophon e note", file_name="colophon.xhtml", lang="it")
 colophon.content = """<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it">
@@ -172,6 +172,8 @@ colophon.content = """<?xml version="1.0" encoding="utf-8"?>
 <p>© Il progetto La valigia d'Italia. Tutti i diritti riservati.</p>
 </body></html>""".encode("utf-8")
 
+book.add_item(title_pg)
+book.add_item(colophon)
 spine_items, toc_items = [title_pg, colophon], []
 for i, (title, text) in enumerate(chapters, start=1):
     doc = chapter_doc(i, title, md.convert(text), ILLUS.get(i))
