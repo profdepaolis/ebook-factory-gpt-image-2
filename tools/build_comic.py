@@ -328,7 +328,7 @@ PAGES = [
         dict(panel="A", x=4, y=4, w=95, text="Fiorenzuola d'Arda, prima sosta.", size=8.5),
     ], balloons=[
         dict(panel="B", cx=31, cy=22, w=43, tail=(27, 58), size=12, text="50 lire di pistacchio!"),
-        dict(panel="C", cx=22, cy=24, w=37, tail=(18, 58), size=8,
+        dict(panel="C", cx=27, cy=24, w=44, tail=(18, 56), size=7,
              text="«IN ARRIVO L'AUTOSTRADA COMPLETA…»"),
         dict(panel="C", cx=41, cy=86, w=48, tail=(47, 114), size=8.5,
              text="Il 4 ottobre, Marco. Ricordatene."),
@@ -345,7 +345,7 @@ PAGES = [
         dict(panel="B", cx=31.5, cy=22, w=52, tail=(30, 58), size=9.5,
              text="Qui i prezzi sono onesti. E il mare è basso!"),
     ], overlays=[
-        dict(panel="A", x=35, y=22, w=60, text="LA SIRENA", size=16, style="neon", color=(255, 96, 76)),
+        dict(panel="A", x=96, y=29.5, w=27, text="LA SIRENA", size=10, style="neon", color=(255, 96, 76)),
     ]),
     # ---------------- Page 6 — L'amico tedesco
     dict(template="top-wide", title="L'amico tedesco", panels={
@@ -355,11 +355,11 @@ PAGES = [
     }, captions=[], balloons=[
         dict(panel="A", cx=40, cy=14, w=40, tail=(35, 48), size=13, style="shout", min_h=15,
              text="CE L'HO FATTA!"),
-        dict(panel="A", cx=38, cy=80, w=45, tail=(17, 112), size=9.5,
+        dict(panel="A", cx=103, cy=40, w=45, tail=(45, 62), size=9.5,
              text="…Non sei l'Oceanico!"),
         dict(panel="B", cx=31.5, cy=17, w=52, tail=(30, 54), size=8,
              text="Ciao! Vengo da Monaco. Mio nonno dice che qui tutto è «un po' in ritardo e un po' più buono»!"),
-        dict(panel="C", cx=34, cy=22, w=34, tail=(36, 56), size=11, text="Te la mando."),
+        dict(panel="C", cx=34, cy=22, w=34, tail=(49, 46), size=11, text="Te la mando."),
     ], overlays=[]),
     # ---------------- Page 7 — La rotonda sul mare
     dict(template="top-wide", title="La rotonda sul mare", panels={
@@ -367,7 +367,7 @@ PAGES = [
         "B": (img("p21_festa.jpg"), "p21_festa"),
         "C": (img("p22_diario.jpg"), "p22_diario"),
     }, captions=[], balloons=[
-        dict(panel="A", cx=82, cy=16, w=58, tail=(64, 36), size=9, style="shout", min_h=17,
+        dict(panel="A", cx=82, cy=16, w=58, tail=(95, 42), size=9, style="shout", min_h=17,
              text="SABATO 15 AGOSTO, GRANDE FESTA DI FERRAGOSTO!"),
         dict(panel="B", cx=27, cy=20, w=43, tail=(23, 56), size=9.5,
              text="ORE-STE! Non si balla…!"),
